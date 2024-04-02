@@ -56,7 +56,9 @@ public class TravelApp {
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-
+                case 4:
+                    System.out.println(" 프로그램을 종료합니다. ");
+                    return;
 
             }
         }
