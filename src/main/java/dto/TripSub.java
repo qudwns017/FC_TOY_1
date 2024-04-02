@@ -1,30 +1,30 @@
 package src.main.java.dto;
 
 public class TripSub {
-    private int trip_id;
-    private String trip_name;
+    private int tripId;
+    private String tripName;
 
     public TripSub() {
     }
 
-    public TripSub(int trip_id, String trip_name) {
-        this.trip_id = trip_id;
-        this.trip_name = trip_name;
+    public TripSub(int tripId, String tripName) {
+        this.tripId = tripId;
+        this.tripName = tripName;
     }
 
-    public int getTrip_id() {
-        return trip_id;
+    public int getTripId() {
+        return tripId;
     }
 
-    public String getTrip_name() {
-        return trip_name;
+    public String getTripName() {
+        return tripName;
     }
 
     @Override
     public String toString() {
         return "TripSub{" +
-                "trip_id=" + trip_id +
-                ", trip_name='" + trip_name + '\'' +
+                "trip_id=" + tripId +
+                ", trip_name='" + tripName + '\'' +
                 '}';
     }
 }
