@@ -11,7 +11,13 @@ public class Itinerary {
     private Date check_in;
     private Date check_out;
 
-    Itinerary() {
+    public Itinerary(int itinerary_id, String departure_place, String destination, Date departure_time,
+                     Date arrival_time) {
+        this.itinerary_id = itinerary_id;
+        this.departure_place = departure_place;
+        this.destination = destination;
+        this.departure_time = departure_time;
+        this.arrival_time = arrival_time;
     }
 
     public int getItinerary_id() {
