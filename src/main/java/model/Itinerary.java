@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Itinerary {
     private int itinerary_id;
-    private int trip_id;
     private String departure_place;
     private String destination;
     private Date departure_time;
@@ -12,7 +11,13 @@ public class Itinerary {
     private Date check_in;
     private Date check_out;
 
-    public Itinerary() {
+    public Itinerary(int itinerary_id, String departure_place, String destination, Date departure_time,
+                     Date arrival_time) {
+        this.itinerary_id = itinerary_id;
+        this.departure_place = departure_place;
+        this.destination = destination;
+        this.departure_time = departure_time;
+        this.arrival_time = arrival_time;
     }
 
     public int getItinerary_id() {
@@ -22,10 +27,6 @@ public class Itinerary {
     public void setItinerary_id(int itinerary_id) {
         this.itinerary_id = itinerary_id;
     }
-
-    public int getTrip_id() { return trip_id; }
-
-    public void setTrip_id() { this.trip_id = trip_id; }
 
     public String getDeparture_place() {
         return departure_place;
