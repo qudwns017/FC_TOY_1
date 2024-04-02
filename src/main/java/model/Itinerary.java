@@ -12,7 +12,7 @@ public class Itinerary {
     private Date check_in;
     private Date check_out;
 
-    Itinerary() {
+    public Itinerary() {
     }
 
     public int getItinerary_id() {
