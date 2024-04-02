@@ -10,7 +10,7 @@ public class Trip {
     private Date end_date;
     private List<Itinerary> itineraries;
 
-    Trip() {
+    public Trip() {
     }
 
     public int getTrip_id() {
@@ -51,5 +51,16 @@ public class Trip {
 
     public void addItineraries(Itinerary itinerary) {
         this.itineraries.add(itinerary);
+    }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "trip_id=" + trip_id +
+                ", trip_name='" + trip_name + '\'' +
+                ", start_date=" + start_date +
+                ", end_date=" + end_date +
+                ", itineraries=" + itineraries +
+                '}';
     }
 }
