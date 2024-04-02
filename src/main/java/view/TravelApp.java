@@ -6,6 +6,7 @@ import src.main.java.model.Itinerary;
 import src.main.java.model.Trip;
 import src.main.java.utils.Messages;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class TravelApp {
@@ -36,6 +37,26 @@ public class TravelApp {
                         System.out.println("추가에 실패했습니다.");
                     }
                     break;
+
+                case 3: //조회
+                    Trip trip = TripController.getAllTrip(); //여행 번호와 아이디만 findAllTrip()
+                    System.out.println("조회할 여행 번호를 입력해주세요 : ");
+                    // 여행 상세 추가 printAllTrip()
+                    try{
+                        trip_id = consoleView.getTrip();
+                        if(getTrip == null){
+                            System.out.println("존재하지 않는 여행 번호 입니다. ");
+                            return;
+                        }
+
+                        List<Itinerary> itineraries = itineraryController.findOneItinerary(trip_id);
+                        trip = TripController.findOneTrip(trip_id);
+                        consoleView.printItineraryInfo(trip,itineraries);
+                        break;
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
 
             }
         }
