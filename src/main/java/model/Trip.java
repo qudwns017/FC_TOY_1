@@ -1,5 +1,6 @@
 package src.main.java.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,11 @@ public class Trip {
     private Date end_date;
     private List<Itinerary> itineraries;
 
-    Trip() {
+    public Trip(String trip_name, Date start_date, Date end_date, List<Itinerary> itineraries) {
+        this.trip_name = trip_name;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.itineraries = itineraries;
     }
 
     public int getTrip_id() {
@@ -51,5 +56,16 @@ public class Trip {
 
     public void addItineraries(Itinerary itinerary) {
         this.itineraries.add(itinerary);
+    }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "trip_id=" + trip_id +
+                ", trip_name='" + trip_name + '\'' +
+                ", start_date=" + start_date +
+                ", end_date=" + end_date +
+                ", itineraries=" + itineraries +
+                '}';
     }
 }
