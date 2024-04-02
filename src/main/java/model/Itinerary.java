@@ -3,37 +3,37 @@ package src.main.java.model;
 import java.util.Date;
 
 public class Itinerary {
-    private int itinerary_id;
-    private String departure_place;
+    private int itineraryId;
+    private String departurePlace;
     private String destination;
-    private Date departure_time;
-    private Date arrival_time;
-    private Date check_in;
-    private Date check_out;
+    private Date departureTime;
+    private Date arrivalTime;
+    private Date checkIn;
+    private Date checkOut;
 
-    public Itinerary(int itinerary_id, String departure_place, String destination, Date departure_time,
-                     Date arrival_time) {
-        this.itinerary_id = itinerary_id;
-        this.departure_place = departure_place;
+    public Itinerary(int itineraryId, String departurePlace, String destination, Date departureTime,
+                     Date arrivalTime) {
+        this.itineraryId = itineraryId;
+        this.departurePlace = departurePlace;
         this.destination = destination;
-        this.departure_time = departure_time;
-        this.arrival_time = arrival_time;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
     }
 
-    public int getItinerary_id() {
-        return itinerary_id;
+    public int getItineraryId() {
+        return itineraryId;
     }
 
-    public void setItinerary_id(int itinerary_id) {
-        this.itinerary_id = itinerary_id;
+    public void setItineraryId(int itineraryId) {
+        this.itineraryId = itineraryId;
     }
 
-    public String getDeparture_place() {
-        return departure_place;
+    public String getDeparturePlace() {
+        return departurePlace;
     }
 
-    public void setDeparture_place(String departure_place) {
-        this.departure_place = departure_place;
+    public void setDeparturePlace(String departurePlace) {
+        this.departurePlace = departurePlace;
     }
 
     public String getDestination() {
@@ -44,35 +44,35 @@ public class Itinerary {
         this.destination = destination;
     }
 
-    public Date getDeparture_time() {
-        return departure_time;
+    public Date getDepartureTime() {
+        return departureTime;
     }
 
-    public void setDeparture_time(Date departure_time) {
-        this.departure_time = departure_time;
+    public void setDepartureTime(Date departureTime) {
+        this.departureTime = departureTime;
     }
 
-    public Date getArrival_time() {
-        return arrival_time;
+    public Date getArrivalTime() {
+        return arrivalTime;
     }
 
-    public void setArrival_time(Date arrival_time) {
-        this.arrival_time = arrival_time;
+    public void setArrivalTime(Date arrivalTime) {
+        this.arrivalTime = arrivalTime;
     }
 
-    public Date getCheck_in() {
-        return check_in;
+    public Date getCheckIn() {
+        return checkIn;
     }
 
-    public void setCheck_in(Date check_in) {
-        this.check_in = check_in;
+    public void setCheckIn(Date checkIn) {
+        this.checkIn = checkIn;
     }
 
-    public Date getCheck_out() {
-        return check_out;
+    public Date getCheckOut() {
+        return checkOut;
     }
 
-    public void setCheck_out(Date check_out) {
-        this.check_out = check_out;
+    public void setCheckOut(Date checkOut) {
+        this.checkOut = checkOut;
     }
 }

@@ -24,11 +24,11 @@ public class TripController {
 
         // json 파일 개수 세기 > trip_id
         String[] jsons = dir.list();
-        trip.setTrip_id(jsons.length + 1);
+        trip.setTripId(jsons.length + 1);
 
         // trip_(num).json 추가하기
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-        String newTrip = JSON_DIRECTORY + "trip_" + trip.getTrip_id() + ".json";
+        String newTrip = JSON_DIRECTORY + "trip_" + trip.getTripId() + ".json";
 
         try {
             FileWriter fw = new FileWriter(newTrip);
@@ -41,9 +41,9 @@ public class TripController {
 
     }
 
-    public static Trip getTrip(int trip_id) {
+    public static Trip getTrip(int tripId) {
         String fileDirectory = "src/main/resources/trip/";
-        String fileName = "trip_" + trip_id + ".json";
+        String fileName = "trip_" + tripId + ".json";
         Trip trip;
 
         Reader reader = null;

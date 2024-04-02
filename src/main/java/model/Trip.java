@@ -1,71 +1,62 @@
 package src.main.java.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Trip {
-    private int trip_id;
-    private String trip_name;
-    private Date start_date;
-    private Date end_date;
-    private List<Itinerary> itineraries;
+    private int tripId;
+    private String tripName;
+    private Date startDate;
+    private Date endDate;
 
-    public Trip(String trip_name, Date start_date, Date end_date, List<Itinerary> itineraries) {
-        this.trip_name = trip_name;
-        this.start_date = start_date;
-        this.end_date = end_date;
-        this.itineraries = itineraries;
+    public Trip(String tripName, Date startDate, Date endDate) {
+        this.tripName = tripName;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
-    public int getTrip_id() {
-        return trip_id;
+    public int getTripId() {
+        return tripId;
     }
 
-    public void setTrip_id(int trip_id) {
-        this.trip_id = trip_id;
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
     }
 
-    public String getTrip_name() {
-        return trip_name;
+    public String getTripName() {
+        return tripName;
     }
 
-    public void setTrip_name(String trip_name) {
-        this.trip_name = trip_name;
+    public void setTripName(String tripName) {
+        this.tripName = tripName;
     }
 
-    public Date getStart_date() {
-        return start_date;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Date getEnd_date() {
-        return end_date;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
-    }
-
-    public List<Itinerary> getItineraries() {
-        return itineraries;
-    }
-
-    public void addItineraries(Itinerary itinerary) {
-        this.itineraries.add(itinerary);
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     @Override
     public String toString() {
         return "Trip{" +
-                "trip_id=" + trip_id +
-                ", trip_name='" + trip_name + '\'' +
-                ", start_date=" + start_date +
-                ", end_date=" + end_date +
-                ", itineraries=" + itineraries +
+                "tripId=" + tripId +
+                ", tripName='" + tripName + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
                 '}';
     }
 }
