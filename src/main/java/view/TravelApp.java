@@ -62,7 +62,6 @@ public class TravelApp {
                 default:
                     System.out.println(" 잘못된 입력입니다. ");
                     break;
-
             }
         }
     }
