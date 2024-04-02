@@ -2,6 +2,7 @@ package src.main.java.view;
 
 import src.main.java.controller.ItineraryController;
 import src.main.java.controller.TripController;
+import src.main.java.model.Itinerary;
 import src.main.java.model.Trip;
 import src.main.java.utils.Messages;
 
@@ -24,6 +25,16 @@ public class TravelApp {
                     Trip newTrip = consoleView.getTripInfo();
                     tripController = addTrip(newTrip);
                     System.out.println("여행이 추가되었습니다. ");
+                    break;
+
+                case 2: //여정기록
+                    Itinerary newItinerary = consoleView.getItineraryInfo();
+                    if (addItinerary != null){
+                        TripController.addItinerary(newItinerary);
+                        System.out.println("추가 완료 했습니다");
+                    }else{
+                        System.out.println("추가에 실패했습니다.");
+                    }
                     break;
 
             }
