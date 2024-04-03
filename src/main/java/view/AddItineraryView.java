@@ -9,10 +9,10 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class AddItineraryView {
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+    // private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
     private static final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddhh:mm");
     private static final Scanner sc = new Scanner(System.in);
-    private  static final Messages messages = new Messages();
+    private static final Messages messages = new Messages();
 
     public static Itinerary getItineraryInfo() {
         messages.equal();
@@ -25,11 +25,10 @@ public class AddItineraryView {
 
         Date departureDay, arrivalDay;
 
-        // TODO : 여행 날짜도 비교해야함
+        // TODO : 여행 날짜도 비교 필요
         departureDay = parseDateTime("여정 출발");
-        while(true) {
+        while (true) {
             arrivalDay = parseDateTime("여정 도착");
-            // 출발 < 도착
             if (arrivalDay.after(departureDay)) break;
             else System.out.println("여정 도착일이 출발일 이후여야 합니다.");
         }
@@ -41,14 +40,12 @@ public class AddItineraryView {
 
             while (true) {
                 checkInDay = parseDateTime("체크인");
-                // 도착일 < 체크인 ?
                 if (checkInDay.after(arrivalDay)) break;
                 else System.out.println("체크인은 여정 도착 이후여야 합니다.");
             }
 
             while (true) {
                 checkOutDay = parseDateTime("체크아웃");
-                // 체크인 < 체크아웃 ?
                 if (checkOutDay.after(checkInDay)) break;
                 else System.out.println("체크아웃은 체크인 이전이여야 합니다.");
             }
