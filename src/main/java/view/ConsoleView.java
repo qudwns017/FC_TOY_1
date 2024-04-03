@@ -40,26 +40,56 @@ public class ConsoleView {
         return trip_id;
     }
 
+    public String getString(String str){
+        System.out.print(str + "을 입력해주세요 : ");
+        String tmp = sc.nextLine();
+        return tmp;
+    }
+
+    public Date getDate(String str){
+        System.out.print(str + "를 입력해주세요 ex)20240401 : ");
+        String dateInput = sc.nextLine();
+
+        Date date = null;
+        try{
+            date = dateFormat.parse(dateInput);
+        }
+        catch(Exception e){
+            System.out.println("잘못된 형식입니다. yyyymmdd 형식으로 입력해주세요");
+            date = getDate(str);
+        }
+        System.out.println(" ");
+        return date;
+    }
+
+    public Date getDateTime(String str, Date date){
+        System.out.print(str + "을 입력해주세요 ex) 12:30 : ");
+        String timeInput = sc.nextLine();
+
+        String dateString = dateFormat.format(date);
+        Date time = null;
+        try{
+            time = TimeFormat.parse(dateString + timeInput);
+            return time;
+        }
+        catch(Exception e){
+            System.out.println("잘못된 형식입니다. hh:mm 형식으로 입력해주세요");
+            time = getDateTime(str, date);
+        }
+        System.out.println(" ");
+        return time;
+    }
+
     public Trip getTripInfo() { //1.여행 기록
         messages.equal();
         System.out.println("- 여행 이름을 입력해주세요. :");
         String tripName = sc.nextLine();
-        System.out.println("- 시작 날짜를 입력해주세요. ex) 20240401 :");
-        String startDateFormat = sc.nextLine();
-        System.out.println("- 종료 날자를 입력해주세요. ex) 20240403 :");
-        String endDateFormat = sc.nextLine();
-        System.out.println();
 
         Date startDate;
         Date endDate;
+        startDate = getDate("시작 날짜");
+        endDate = getDate("종료 날짜");
 
-        try { //문자열을 데이트 포맷으로 변경
-            startDate = dateFormat.parse(startDateFormat);
-            endDate = dateFormat.parse(endDateFormat);
-        } catch (Exception e) {
-            System.out.println("잘못된 형식입니다. yyyymmdd 형식으로 입력해주세요");
-            return null;
-        }
         return new Trip(tripName, startDate, endDate);
     }
 

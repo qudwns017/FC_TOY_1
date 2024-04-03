@@ -14,10 +14,17 @@ public class TravelApp {
         ItineraryController itineraryController = new ItineraryController();
         TripController tripController = new TripController();
         ConsoleView consoleView = new ConsoleView();
+
+
         MainView mainView = new MainView(); //값을 전달 한다면
         //Messages messages = new Messages();
         //messages.startApp();
 
+
+        GetTravelView getTravelView = new GetTravelView();
+        Messages messages = new Messages();
+
+        AddTripView addTripView = new AddTripView();
 
         while (true){
             Scanner sc = new Scanner(System.in);
@@ -25,9 +32,16 @@ public class TravelApp {
             mainView.sendView(num); //mainView에게 값을 전달 한다면
             switch (num){
                 case 1: //여행 기록
-                    Trip newTrip = consoleView.getTripInfo();
+                    Trip newTrip = addTripView.getTripInfo();
                     tripController.addTrip(newTrip);
                     System.out.println("여행이 추가되었습니다. ");
+
+                    try {
+                        Thread.sleep(1500);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     break;
 
                      //@@@@@@@@수정 필요
@@ -48,7 +62,7 @@ public class TravelApp {
                     List<Trip> trips = tripController.loadAllTrip(); //여행 번호와 아이디만 findAllTrip()
                     // 여행 상세 추가 printAllTrip()
                     try{ // @@@@@@@@@ 조회할 여행 번호 받아오기
-                        int trips_id = consoleView.getTrip(trips);
+                        int trips_id = getTravelView.getTrip(trips);
                         if(trips_id == -1){
                             System.out.println("존재하지 않는 여행 번호 입니다. ");
                             return;
@@ -56,7 +70,7 @@ public class TravelApp {
 
                         List<Itinerary> itineraries = itineraryController.getItinerary(trips_id);
                         Trip cur_trip = tripController.getTrip(trips_id);
-                        consoleView.printItineraryInfo(cur_trip,itineraries);
+                        getTravelView.printItineraryInfo(cur_trip,itineraries);
                         break;
                     }catch (Exception e){
                         e.printStackTrace();
