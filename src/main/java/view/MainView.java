@@ -23,14 +23,17 @@ public class MainView {
             messages.startApp();
         switch (num){
             case 1:
-                       addTripView.getTripInfo();
-                       break;
+                addTripView.getTripInfo();
+                break;
+
             case 2:
-                       addItineraryView.getItineraryInfo();
-                       break;
+                addItineraryView.getItineraryInfo();
+                break;
+
             case 3:
-                        getTravelView.printTravelInfo();
-                        break;
+                getTravelView.printTravelInfo();
+                break;
+
             case 4:
                 System.out.println("프로그램을 종료합니다");
                 return;
