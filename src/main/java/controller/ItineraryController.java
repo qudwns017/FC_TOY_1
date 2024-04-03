@@ -1,19 +1,24 @@
 package src.main.java.controller;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import com.google.gson.Gson;
 import java.util.List;
 import java.util.Objects;
 import src.main.java.model.ItinerariesJsonDTO;
 import src.main.java.model.Itinerary;
 
 public class ItineraryController {
-    Gson gson = new Gson();
-    Date date = new Date();
+    JsonConverter jsonConverter = new JsonConverter();
+
+    public void addItinerary(int tripId, Itinerary itinerary) {
+        List<Itinerary> itineraryList = getItinerary(tripId);
+        int itineraryId = itineraryList.size() + 1;
+        itinerary.setItineraryId(itineraryId);
+        itineraryList.add(itinerary);
+        jsonConverter.saveItinerary(tripId, itineraryList);
+    }
+
+    public List<Itinerary> getItinerary(int tripId) {
+        return jsonConverter.loadItineray(tripId);
+    }
 
     public void addItinerary(int tripId, List<Itinerary> itineraries) {
         itineraries = new ArrayList<>();
