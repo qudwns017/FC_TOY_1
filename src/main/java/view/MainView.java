@@ -21,6 +21,9 @@ public class MainView {
                         case 2:
                                 addItineraryView.getItineraryInfo();
                                 break;
+                        case 3:
+                                getTravelView.printTravelInfo();
+                                break;;
 
                 }
         }
