@@ -14,7 +14,19 @@ public class MainView {
         ItineraryController itineraryController = new ItineraryController();
         TripController tripController = new TripController();
 
+        while (true){
+            Scanner sc = new Scanner(System.in);
+            int num = sc.nextInt();
 
+            switch (num){
+                case 1:
+                    Trip newTrip = addTripView.getTripInfo();
+                    tripController.addTrip(newTrip);
+                    System.out.println("여행이 추가되었습니다. ");
+                    break;
+
+            }
+        }
     }
 
 }
