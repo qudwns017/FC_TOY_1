@@ -1,12 +1,9 @@
 package src.main.java.view;
 
-import src.main.java.controller.ItineraryController;
 import src.main.java.controller.TripController;
-import src.main.java.model.Itinerary;
 import src.main.java.model.Trip;
 import src.main.java.utils.Messages;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,12 +16,7 @@ public class MainView {
         AddItineraryView addItineraryView = new AddItineraryView(); //여정 기록 뷰
         GetTravelView getTravelView = new GetTravelView(); // 여정/여행 조회 뷰
         TripController tripController = new TripController();
-        Messages messages = new Messages();
-        public void sendView(){
-            messages.startApp();
-           while (true){
-               Scanner sc = new Scanner(System.in);
-               int num = sc.nextInt();
+        public void sendView(int num){
                switch (num){
                    case 1: //1. 여행추가
                        addTripView.getTripInfo();
@@ -44,6 +36,6 @@ public class MainView {
                        System.out.println("잘못된 입력입니다. ");
                        break;
                }
-           }
+
      }
 }
