@@ -16,6 +16,8 @@ public class TravelApp {
         ConsoleView consoleView = new ConsoleView();
         Messages messages = new Messages();
 
+        AddTripView addTripView = new AddTripView();
+
         while (true){
             messages.startApp();
             Scanner sc = new Scanner(System.in);
@@ -23,9 +25,16 @@ public class TravelApp {
 
             switch (num){
                 case 1: //여행 기록
-                    Trip newTrip = consoleView.getTripInfo();
+                    Trip newTrip = addTripView.getTripInfo();
                     tripController.addTrip(newTrip);
                     System.out.println("여행이 추가되었습니다. ");
+
+                    try {
+                        Thread.sleep(1500);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     break;
 
                      //@@@@@@@@수정 필요
