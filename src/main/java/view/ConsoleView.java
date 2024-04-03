@@ -40,26 +40,56 @@ public class ConsoleView {
         return trip_id;
     }
 
+    public String getString(String str){
+        System.out.print(str + "을 입력해주세요 : ");
+        String tmp = sc.nextLine();
+        return tmp;
+    }
+
+    public Date getDate(String str){
+        System.out.print(str + "를 입력해주세요 ex)20240401 : ");
+        String dateInput = sc.nextLine();
+
+        Date date = null;
+        try{
+            date = dateFormat.parse(dateInput);
+        }
+        catch(Exception e){
+            System.out.println("잘못된 형식입니다. yyyymmdd 형식으로 입력해주세요");
+            date = getDate(str);
+        }
+        System.out.println(" ");
+        return date;
+    }
+
+    public Date getDateTime(String str, Date date){
+        System.out.print(str + "을 입력해주세요 ex) 12:30 : ");
+        String timeInput = sc.nextLine();
+
+        String dateString = dateFormat.format(date);
+        Date time = null;
+        try{
+            time = TimeFormat.parse(dateString + timeInput);
+            return time;
+        }
+        catch(Exception e){
+            System.out.println("잘못된 형식입니다. hh:mm 형식으로 입력해주세요");
+            time = getDateTime(str, date);
+        }
+        System.out.println(" ");
+        return time;
+    }
+
     public Trip getTripInfo() { //1.여행 기록
         messages.equal();
         System.out.println("- 여행 이름을 입력해주세요. :");
         String tripName = sc.nextLine();
-        System.out.println("- 시작 날짜를 입력해주세요. ex) 20240401 :");
-        String startDateFormat = sc.nextLine();
-        System.out.println("- 종료 날자를 입력해주세요. ex) 20240403 :");
-        String endDateFormat = sc.nextLine();
-        System.out.println();
 
         Date startDate;
         Date endDate;
+        startDate = getDate("시작 날짜");
+        endDate = getDate("종료 날짜");
 
-        try { //문자열을 데이트 포맷으로 변경
-            startDate = dateFormat.parse(startDateFormat);
-            endDate = dateFormat.parse(endDateFormat);
-        } catch (Exception e) {
-            System.out.println("잘못된 형식입니다. yyyymmdd 형식으로 입력해주세요");
-            return null;
-        }
         return new Trip(tripName, startDate, endDate);
     }
 
@@ -72,54 +102,29 @@ public class ConsoleView {
         System.out.println("여정 도착 장소를 입력해주세요 :");
         String destination = sc.nextLine();
 
-        System.out.println("여정 출발 날짜를 입력해주세요 ex) 240401 : ");
-        String departure_day_format = sc.nextLine();//
-        System.out.println("여정 출발 시간을 입력해주세요 ex) 13:30 : ");
-        String departure_time_format = sc.nextLine();//
-        System.out.println("여정 도착 날짜를 입력해주세요 ex) 240402 :");
-        String arrival_day_format = sc.nextLine();
-        System.out.println(" 여정 도착 시간을 입력해주세요 ex) 17:30 : ");
-        String arrival_time_format = sc.nextLine();
-        System.out.println();
-        System.out.println("체크인을 하십니까? (Y/N) : ");
-        String check_in_answer = sc.nextLine();
+
         Date departure_day;
         Date arrival_day;
 
-        try {
-            departure_day = dateFormat.parse(departure_day_format);
-            arrival_day = dateFormat.parse(arrival_day_format);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+        departure_day = getDate("여정 출발 날짜");
+        departure_day = getDateTime("여정 출발 시간", departure_day);
 
-        try {
-            departure_day = TimeFormat.parse(departure_day_format + departure_time_format);
-            arrival_day = TimeFormat.parse(arrival_day_format + arrival_time_format);
+        arrival_day = getDate("여정 도착 날짜");
+        arrival_day = getDateTime("여정 도착 시간", arrival_day);
 
-        } catch (Exception e) {
-            System.out.println("잘못된 형식입니다. HH:mm 형식으로 입력해주세요.");
-            return null;
-        }
+        System.out.println("체크인을 하십니까? (Y/N) : ");
+        String check_in_answer = sc.nextLine();
 
         Date check_in = null;
         Date check_out = null;
         if (check_in_answer.equals("Y")) { //체크인 Y
-            System.out.println(" 체크인 날짜를 입력해주세요 ex) 240401 : ");
-            String check_in_day_format = sc.nextLine();
-            System.out.println("체크인 시간을 입력해주세요 ex) 15:00 : ");
-            String check_in_format = sc.nextLine();
-            System.out.println("체크아웃 날짜를 입력해주세요 ex) 240402 :");
-            String check_out_day_format = sc.nextLine();
-            System.out.println("체크아웃 시간을 입력해주세요 ex) 12:30 : ");
-            String check_out_format = sc.nextLine();
+            check_in = getDate("체크인 날짜");
+            check_in = getDateTime("체크인 시간", check_in);
 
-            try { //문자열을 date 로 변환
-                // Date check_out_day = dateFormat.parse(check_out_day_format);
-                // Date check_in_day = dateFormat.parse(check_in_day_format);
-                check_in = TimeFormat.parse(check_in_format);
-                check_out = TimeFormat.parse(check_out_format);
+            check_out = getDate("체크아웃 날짜");
+            check_out = getDateTime("체크아웃 시간", check_out);
+
+            try {
                 //체크인 시간이 여정 출발 시간 이전인지 and 도착 시간이 체크인 이후인지
                 if (check_in.before(departure_day) || check_in.after(arrival_day)) {
                     System.out.println(" 체크인/체크아웃 시간은 여정 출발 시간과 도착 시간 사이여야합니다.");
@@ -145,8 +150,6 @@ public class ConsoleView {
 
         return new Itinerary(departurePlace, destination, departure_day, arrival_day,
                 check_in, check_out);
-
-
     }
 
     public void printItineraryInfo(Trip trip, List<Itinerary> itineraries) { //조회
