@@ -18,10 +18,32 @@ public class AddTripView {
         messages.equal();
         System.out.print("- 여행 이름을 입력해주세요. :");
         String tripName = sc.nextLine();
-        System.out.print("- 시작 날짜를 입력해주세요. ex) 20240401 :");
-        String startDateFormat = sc.nextLine();
-        System.out.print("- 종료 날자를 입력해주세요. ex) 20240403 :");
-        String endDateFormat = sc.nextLine();
+
+        String startDateFormat = null;
+        String endDateFormat = null;
+
+        while (true) {
+            System.out.print("- 시작 날짜를 입력해주세요. ex) 20240401 :");
+            String startDate = sc.nextLine();
+            if (startDate.length() == 8) {
+                startDateFormat = startDate;
+                break;
+            } else {
+                System.out.println("잘못된 형식입니다. yyyymmdd 형식으로 입력해주세요");
+            }
+        }
+
+        while (true) {
+            System.out.print("- 종료 날자를 입력해주세요. ex) 20240403 :");
+            String endDate = sc.nextLine();
+            if (endDate.length() == 8) {
+                endDateFormat = endDate;
+                break;
+            } else {
+                System.out.println("잘못된 형식입니다. yyyymmdd 형식으로 입력해주세요");
+            }
+        }
+
         System.out.println();
 
         Date startDate;
