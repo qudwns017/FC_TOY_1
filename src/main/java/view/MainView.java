@@ -12,17 +12,16 @@ public class MainView {
         AddTripView addTripView = new AddTripView(); //여행 기록 뷰
         AddItineraryView addItineraryView = new AddItineraryView(); //여정 기록 뷰
         GetTravelView getTravelView = new GetTravelView(); // 여정/여행 조회 뷰
-        ItineraryController itineraryController = new ItineraryController();
-        TripController tripController = new TripController();
-        public AddTripView getAddTripView(){
-                return addTripView;
-        }
 
-        public AddItineraryView getAddItineraryView() {
-                return addItineraryView;
-        }
+        public void sendView(int num){
+                switch (num){
+                        case 1:
+                                addTripView.getTripInfo();
+                                break;
+                        case 2:
+                                addItineraryView.getItineraryInfo();
+                                break;
 
-        public GetTravelView getGetTravelView(){
-                return getTravelView;
+                }
         }
 }
