@@ -14,10 +14,8 @@ public class TravelApp {
         ItineraryController itineraryController = new ItineraryController();
         TripController tripController = new TripController();
         ConsoleView consoleView = new ConsoleView();
-        Messages messages = new Messages();
 
         while (true){
-            messages.startApp();
             Scanner sc = new Scanner(System.in);
             int num = sc.nextInt();
 
