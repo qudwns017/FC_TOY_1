@@ -26,18 +26,16 @@ public class MainView {
                Scanner sc = new Scanner(System.in);
                int num = sc.nextInt();
                switch (num){
-                   case 1:
+                   case 1: //1. 여행추가
                        addTripView.getTripInfo();
-                       addTripView.
                        break;
 
-                   case 2:
+                   case 2: //2.여정기록
                        addItineraryView.getItineraryInfo();
                        break;
-                   case 3:
+                   case 3://여정조회
                        List<Trip> trips = tripController.loadAllTrip();
                        int selectedTripId = getTravelView.getTrip(trips);
-                       //getTravelView.getTrip();
                        break;
                    case 4:
                        System.out.println("프로그램을 종료합니다");
