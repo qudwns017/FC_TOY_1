@@ -19,8 +19,8 @@ public class AddTripView {
         System.out.print("- 여행 이름을 입력해주세요. :");
         String tripName = sc.nextLine();
 
-        String startDateFormat = null;
-        String endDateFormat = null;
+        String startDateFormat;
+        String endDateFormat;
 
         while (true) {
             System.out.print("- 시작 날짜를 입력해주세요. ex) 20240401 :");
