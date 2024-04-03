@@ -24,7 +24,21 @@ public class ConsoleView {
     Messages messages = new Messages();
     Scanner sc = new Scanner(System.in);
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-    SimpleDateFormat TimeFormat = new SimpleDateFormat("yyyy-MM-ddhh:mm");
+    SimpleDateFormat TimeFormat = new SimpleDateFormat("yyyyMMddhh:mm");
+
+    public int getTrip(List<Trip> trips){
+        messages.equal();
+        for (Trip trip : trips) {
+            System.out.println("여행 id : " + trip.getTripId()+ "\t여행 이름 : " + trip.getTripName());
+        }
+        messages.equal();
+        System.out.println("조회할 여행 번호를 입력해주세요 : ");
+        int trip_id = sc.nextInt();
+        if(trip_id > trips.size() || trip_id <= 0){
+            trip_id = -1;
+        }
+        return trip_id;
+    }
 
     public Trip getTripInfo() { //1.여행 기록
         messages.equal();
@@ -51,12 +65,11 @@ public class ConsoleView {
 
     public Itinerary getItineraryInfo() { //2.여정기록
         messages.equal();
+        sc = new Scanner(System.in);
         System.out.println("여정에 대한 정보를 입력하겠습니다.");
-        System.out.println(" 여정 이름을 입력해주세요 :");
-        String itineraryName = sc.nextLine();
         System.out.println("여정 출발 장소를 입력해주세요 :");
         String departurePlace = sc.nextLine();
-        System.out.println(" 여정 도착 장소를 입력해주세요 :");
+        System.out.println("여정 도착 장소를 입력해주세요 :");
         String destination = sc.nextLine();
 
         System.out.println("여정 출발 날짜를 입력해주세요 ex) 240401 : ");
@@ -77,7 +90,7 @@ public class ConsoleView {
             departure_day = dateFormat.parse(departure_day_format);
             arrival_day = dateFormat.parse(arrival_day_format);
         } catch (Exception e) {
-            System.out.println("잘못된 형식입니다. yyyymmdd 형식으로 입력해주세요.");
+            System.out.println(e.getMessage());
             return null;
         }
 
@@ -137,7 +150,8 @@ public class ConsoleView {
     }
 
     public void printItineraryInfo(Trip trip, List<Itinerary> itineraries) { //조회
-        List<Itinerary> allItinerary = new ArrayList<>();
+        sc = new Scanner(System.in);
+        List<Itinerary> allItinerary = itineraries;
         System.out.println(trip.getTripName() + "에 대한 여정 정보입니다");
         System.out.println("해당 여행에 대한 여정 정보를 확인하시겠습니까? (Y/N) :");
         String answer = sc.nextLine();
