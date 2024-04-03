@@ -15,6 +15,9 @@ public class TravelApp {
         TripController tripController = new TripController();
         ConsoleView consoleView = new ConsoleView();
         MainView mainView = new MainView(); //값을 전달 한다면
+        //Messages messages = new Messages();
+        //messages.startApp();
+
 
         while (true){
             Scanner sc = new Scanner(System.in);
