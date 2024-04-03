@@ -14,7 +14,6 @@ public class MainView {
         //MainView mainView = new MainView();
         //mainView.sendView
         //startmessage,
-        //
         AddTripView addTripView = new AddTripView(); //여행 기록 뷰
         AddItineraryView addItineraryView = new AddItineraryView(); //여정 기록 뷰
         GetTravelView getTravelView = new GetTravelView(); // 여정/여행 조회 뷰
