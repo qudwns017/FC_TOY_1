@@ -2,6 +2,7 @@ package src.main.java.controller;
 
 import java.util.List;
 import src.main.java.model.Itinerary;
+import src.main.java.utils.JsonConverter;
 
 public class ItineraryController {
     JsonConverter jsonConverter = new JsonConverter();
@@ -11,15 +12,15 @@ public class ItineraryController {
         int itineraryId = itineraryList.size() + 1;
         itinerary.setItineraryId(itineraryId);
         itineraryList.add(itinerary);
-        jsonConverter.saveItinerary(tripId, itineraryList);
+        jsonConverter.saveItineraries(tripId, itineraryList);
     }
 
     public List<Itinerary> getItinerary(int tripId) {
-        return jsonConverter.loadItineray(tripId);
+        return jsonConverter.loadItineraries(tripId);
     }
 
     public Itinerary getItinerary(int tripId, int itinerary_id) {
-        List<Itinerary> itineraryList = jsonConverter.loadItineray(tripId);
+        List<Itinerary> itineraryList = jsonConverter.loadItineraries(tripId);
         for (Itinerary obj : itineraryList) {
             if (itinerary_id == obj.getItineraryId()) {
                 return obj;
