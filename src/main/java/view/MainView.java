@@ -6,6 +6,7 @@ import src.main.java.model.Itinerary;
 import src.main.java.model.Trip;
 import src.main.java.utils.Messages;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,26 +18,34 @@ public class MainView {
         AddTripView addTripView = new AddTripView(); //여행 기록 뷰
         AddItineraryView addItineraryView = new AddItineraryView(); //여정 기록 뷰
         GetTravelView getTravelView = new GetTravelView(); // 여정/여행 조회 뷰
+        TripController tripController = new TripController();
         Messages messages = new Messages();
-        public void sendView(int num){
+        public void sendView(){
             messages.startApp();
-        switch (num){
-            case 1:
-                addTripView.getTripInfo();
-                break;
+           while (true){
+               Scanner sc = new Scanner(System.in);
+               int num = sc.nextInt();
+               switch (num){
+                   case 1:
+                       addTripView.getTripInfo();
+                       addTripView.
+                       break;
 
-            case 2:
-                addItineraryView.getItineraryInfo();
-                break;
-            case 3:
-                getTravelView.printTravelInfo();
-                break;
-            case 4:
-                System.out.println("프로그램을 종료합니다");
-                return;
-            default:
-                System.out.println("잘못된 입력입니다. ");
-                break;
-        }
+                   case 2:
+                       addItineraryView.getItineraryInfo();
+                       break;
+                   case 3:
+                       List<Trip> trips = tripController.loadAllTrip();
+                       int selectedTripId = getTravelView.getTrip(trips);
+                       //getTravelView.getTrip();
+                       break;
+                   case 4:
+                       System.out.println("프로그램을 종료합니다");
+                       return;
+                   default:
+                       System.out.println("잘못된 입력입니다. ");
+                       break;
+               }
+           }
      }
 }

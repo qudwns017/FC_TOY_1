@@ -11,16 +11,15 @@ import java.util.Scanner;
 
 public class TravelApp {
     public static void main(String[] args) {
+        MainView mainView = new MainView();
+        mainView.sendView();
+        /*
         ItineraryController itineraryController = new ItineraryController();
         TripController tripController = new TripController();
         ConsoleView consoleView = new ConsoleView();
-
-
         MainView mainView = new MainView(); //값을 전달 한다면
         //Messages messages = new Messages();
         //messages.startApp();
-
-
         GetTravelView getTravelView = new GetTravelView();
         Messages messages = new Messages();
 
@@ -83,5 +82,7 @@ public class TravelApp {
                     break;
             }
         }
+
+         */
     }
 }
