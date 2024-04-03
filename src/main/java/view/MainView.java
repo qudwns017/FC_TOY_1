@@ -11,7 +11,7 @@ public class MainView {
         //TravelApp에서 입력 받은 값을 전달 받아야
         //MainView mainView = new MainView();
         //mainView.sendView
-        //startmessage,
+        //switch를 travelapp, mainview 둘 중 하나에서만
         AddTripView addTripView = new AddTripView(); //여행 기록 뷰
         AddItineraryView addItineraryView = new AddItineraryView(); //여정 기록 뷰
         GetTravelView getTravelView = new GetTravelView(); // 여정/여행 조회 뷰
