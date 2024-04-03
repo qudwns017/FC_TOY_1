@@ -14,6 +14,7 @@ public class TravelApp {
         ItineraryController itineraryController = new ItineraryController();
         TripController tripController = new TripController();
         ConsoleView consoleView = new ConsoleView();
+        GetTravelView getTravelView = new GetTravelView();
         Messages messages = new Messages();
 
         AddTripView addTripView = new AddTripView();
@@ -55,7 +56,7 @@ public class TravelApp {
                     List<Trip> trips = tripController.loadAllTrip(); //여행 번호와 아이디만 findAllTrip()
                     // 여행 상세 추가 printAllTrip()
                     try{ // @@@@@@@@@ 조회할 여행 번호 받아오기
-                        int trips_id = consoleView.getTrip(trips);
+                        int trips_id = getTravelView.getTrip(trips);
                         if(trips_id == -1){
                             System.out.println("존재하지 않는 여행 번호 입니다. ");
                             return;
@@ -63,7 +64,7 @@ public class TravelApp {
 
                         List<Itinerary> itineraries = itineraryController.getItinerary(trips_id);
                         Trip cur_trip = tripController.getTrip(trips_id);
-                        consoleView.printItineraryInfo(cur_trip,itineraries);
+                        getTravelView.printItineraryInfo(cur_trip,itineraries);
                         break;
                     }catch (Exception e){
                         e.printStackTrace();
