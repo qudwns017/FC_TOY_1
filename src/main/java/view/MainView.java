@@ -25,6 +25,12 @@ public class MainView {
                 addTripView.getTripInfo();
                 break;
 
+            case 2:
+                addItineraryView.getItineraryInfo();
+                break;
+
+
 
         }
+     }
 }
