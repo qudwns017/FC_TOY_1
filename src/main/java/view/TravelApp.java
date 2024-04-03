@@ -13,7 +13,7 @@ public class TravelApp {
     public static void main(String[] args) {
         ItineraryController itineraryController = new ItineraryController();
         TripController tripController = new TripController();
-        src.main.java.ConsoleView consoleView = new src.main.java.ConsoleView();
+        ConsoleView consoleView = new ConsoleView();
         Messages messages = new Messages();
 
         while (true){
