@@ -1,4 +1,4 @@
-package src.main.java.controller;
+package src.main.java.utils;
 
 import java.io.*;
 import java.util.*;

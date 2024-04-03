@@ -11,13 +11,22 @@ public class Itinerary {
     private Date checkIn;
     private Date checkOut;
 
-    public Itinerary(int itineraryId, String departurePlace, String destination, Date departureTime,
+    public Itinerary(String departurePlace, String destination, Date departureTime,
                      Date arrivalTime) {
-        this.itineraryId = itineraryId;
         this.departurePlace = departurePlace;
         this.destination = destination;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
+    }
+
+    public Itinerary(String departurePlace, String destination, Date departureTime, Date arrivalTime, Date checkIn,
+                     Date checkOut) {
+        this.departurePlace = departurePlace;
+        this.destination = destination;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
     }
 
     public int getItineraryId() {

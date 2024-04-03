@@ -90,6 +90,8 @@ public class ConsoleView {
             return null;
         }
 
+        Date check_in = null;
+        Date check_out = null;
         if (check_in_answer.equals("Y")) { //체크인 Y
             System.out.println(" 체크인 날짜를 입력해주세요 ex) 240401 : ");
             String check_in_day_format = sc.nextLine();
@@ -103,10 +105,10 @@ public class ConsoleView {
             try { //문자열을 date 로 변환
                 // Date check_out_day = dateFormat.parse(check_out_day_format);
                 // Date check_in_day = dateFormat.parse(check_in_day_format);
-                Date check_in = TimeFormat.parse(check_in_format);
-                Date check_out = TimeFormat.parse(check_out_format);
+                check_in = TimeFormat.parse(check_in_format);
+                check_out = TimeFormat.parse(check_out_format);
                 //체크인 시간이 여정 출발 시간 이전인지 and 도착 시간이 체크인 이후인지
-                if(check_in.before(departure_day) || check_in.after(arrival_day)){
+                if (check_in.before(departure_day) || check_in.after(arrival_day)) {
                     System.out.println(" 체크인/체크아웃 시간은 여정 출발 시간과 도착 시간 사이여야합니다.");
                     return null;
                 }
@@ -115,20 +117,20 @@ public class ConsoleView {
                 return null;
             }
         } else if (check_in_answer.equals("N")) { //체크인 하지 않는다
-            return new Itinerary(itineraryName, departurePlace, destination, departure_day, arrival_day);
+            return new Itinerary(departurePlace, destination, departure_day, arrival_day);
         }
 
         System.out.println(" - 여정을 더 추가하시겠습니까? (Y/N) : "); //TravelApp?
         String answer = sc.nextLine();
-        if(answer.equals("Y")){
+        if (answer.equals("Y")) {
             return getItineraryInfo();//여정 기록으로 돌아감
         } else if (answer.equals("N")) {
             //메인으로 돌아감
-        }else {
+        } else {
             System.out.println("잘못된 입력입니다 Y / N 형식으로 입력해주세요.");
         }
 
-        return new Itinerary(itineraryName, departurePlace, destination, departure_day, arrival_day,
+        return new Itinerary(departurePlace, destination, departure_day, arrival_day,
                 check_in, check_out);
 
 
@@ -136,23 +138,22 @@ public class ConsoleView {
 
     public void printItineraryInfo(Trip trip, List<Itinerary> itineraries) { //조회
         List<Itinerary> allItinerary = new ArrayList<>();
-        System.out.println(trip.getTrip_name() + "에 대한 여정 정보입니다");
+        System.out.println(trip.getTripName() + "에 대한 여정 정보입니다");
         System.out.println("해당 여행에 대한 여정 정보를 확인하시겠습니까? (Y/N) :");
         String answer = sc.nextLine();
-        if (answer.equals("Y")){ //여정정보 확인
+        if (answer.equals("Y")) { //여정정보 확인
             for (Itinerary itinerary : allItinerary) {
-                System.out.println("여정 이름 :" + itinerary.getItinerary_name());
-                System.out.println("출발 시간 :" + itinerary.getDeparture_time());
-                System.out.println("도착 시간 :" + itinerary.getArrival_time());
+                System.out.println("출발 시간 :" + itinerary.getDepartureTime());
+                System.out.println("도착 시간 :" + itinerary.getArrivalTime());
 
-                if (itinerary.getCheck_in() != null) {
-                    System.out.println("체크인 시간 :" + itinerary.getCheck_in());
+                if (itinerary.getCheckIn() != null) {
+                    System.out.println("체크인 시간 :" + itinerary.getCheckIn());
                 } else {
                     System.out.println("체크인 시간 : 체크인 없음");
                 }
 
-                if (itinerary.getCheck_out() != null) {
-                    System.out.println("체크아웃 시간 :" + itinerary.getCheck_out());
+                if (itinerary.getCheckOut() != null) {
+                    System.out.println("체크아웃 시간 :" + itinerary.getCheckOut());
                 } else {
                     System.out.println("체크아웃 시간 : 체크아웃 없음");
                 }

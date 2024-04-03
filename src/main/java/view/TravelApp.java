@@ -13,7 +13,7 @@ public class TravelApp {
     public static void main(String[] args) {
         ItineraryController itineraryController = new ItineraryController();
         TripController tripController = new TripController();
-        src.main.java.ConsoleView consoleView = new src.main.java.ConsoleView();
+        ConsoleView consoleView = new ConsoleView();
         Messages messages = new Messages();
 
         while (true){
@@ -24,38 +24,39 @@ public class TravelApp {
             switch (num){
                 case 1: //여행 기록
                     Trip newTrip = consoleView.getTripInfo();
-                    tripController = addTrip(newTrip);
+                    tripController.addTrip(newTrip);
                     System.out.println("여행이 추가되었습니다. ");
                     break;
 
-                case 2: //여정기록
-                    Itinerary newItinerary = consoleView.getItineraryInfo();
-                    if (addItinerary != null){
-                        TripController.addItinerary(newItinerary);
-                        System.out.println("추가 완료 했습니다");
-                    }else{
-                        System.out.println("추가에 실패했습니다.");
-                    }
-                    break;
-
-                case 3: //조회
-                    Trip trip = TripController.getAllTrip(); //여행 번호와 아이디만 findAllTrip()
-                    System.out.println("조회할 여행 번호를 입력해주세요 : ");
-                    // 여행 상세 추가 printAllTrip()
-                    try{
-                        trip_id = consoleView.getTrip();
-                        if(getTrip == null){
-                            System.out.println("존재하지 않는 여행 번호 입니다. ");
-                            return;
-                        }
-
-                        List<Itinerary> itineraries = itineraryController.findOneItinerary(trip_id);
-                        trip = TripController.findOneTrip(trip_id);
-                        consoleView.printItineraryInfo(trip,itineraries);
-                        break;
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+                    // @@@@@@@@수정 필요
+//                case 2: //여정기록
+//                    Itinerary newItinerary = consoleView.getItineraryInfo();
+//                    if (itineraryController.addItinerary(1, newItinerary) != null){
+//                        TripController.addItinerary(newItinerary);
+//                        System.out.println("추가 완료 했습니다");
+//                    }else{
+//                        System.out.println("추가에 실패했습니다.");
+//                    }
+//                    break;
+//
+//                case 3: //조회
+//                    List<Trip> trip = tripController.loadAllTrip(); //여행 번호와 아이디만 findAllTrip()
+//                    System.out.println("조회할 여행 번호를 입력해주세요 : ");
+//                    // 여행 상세 추가 printAllTrip()
+//                    try{ // @@@@@@@@@ 조회할 여행 번호 받아오기
+//                        int trip_id = consoleView.getTrip();
+//                        if(getTrip == null){
+//                            System.out.println("존재하지 않는 여행 번호 입니다. ");
+//                            return;
+//                        }
+//
+//                        List<Itinerary> itineraries = itineraryController.findOneItinerary(trip_id);
+//                        trip = TripController.findOneTrip(trip_id);
+//                        consoleView.printItineraryInfo(trip,itineraries);
+//                        break;
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
                 case 4:
                     System.out.println(" 프로그램을 종료합니다. ");
                     return;
