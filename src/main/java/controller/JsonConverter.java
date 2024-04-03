@@ -15,7 +15,7 @@ public class JsonConverter {
     private static final String ITINERARIES_PATH = BASE_PATH + "itineraries/";
 
 
-    public static Trip loadTrip(int tripId) {
+    public Trip loadTrip(int tripId) {
         String fileName = "trip_" + tripId + ".json";
 
         try (FileReader fr = new FileReader(TRIP_PATH + fileName)) {
@@ -30,7 +30,7 @@ public class JsonConverter {
         return null;
     }
 
-    public static List<Trip> loadAllTrip() {
+    public List<Trip> loadAllTrip() {
         // 존재하는 Trip 파일 ID 검색
         List<Integer> existTripFileId = new ArrayList<>();
 
@@ -58,7 +58,7 @@ public class JsonConverter {
         return trips;
     }
 
-    public static void saveTrip(Trip trip) {
+    public void saveTrip(Trip trip) {
         String fileName = "trip_" + trip.getTripId() + ".json";
 
         try (FileWriter fw = new FileWriter(TRIP_PATH + fileName)) {
@@ -73,7 +73,7 @@ public class JsonConverter {
         }
     }
 
-    public static List<Itinerary> loadItineraries(int tripId) {
+    public List<Itinerary> loadItineraries(int tripId) {
         String fileName = "itineraries_" + tripId + ".json";
 
         try (FileReader fr = new FileReader(ITINERARIES_PATH + fileName)) {
@@ -91,21 +91,7 @@ public class JsonConverter {
         return null;
     }
 
-    // 생각해보니 이건 컨트롤러에 있어야 할 듯;;
-    public static Itinerary loadItinerary(int tripId, int itinerartId) {
-        List<Itinerary> itineraries = loadItineraries(tripId);
-
-        if (itineraries == null) return null;
-
-        for (Itinerary i : itineraries) {
-            if (i.getItineraryId() == itinerartId) {
-                return i;
-            }
-        }
-        return null;
-    }
-
-    public static void saveItineraries(int tripId, List<Itinerary> itineraries) {
+    public void saveItineraries(int tripId, List<Itinerary> itineraries) {
         String fileName = "itineraries_" + tripId + ".json";
 
         try (FileWriter fw = new FileWriter(ITINERARIES_PATH + fileName)) {
