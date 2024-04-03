@@ -14,11 +14,12 @@ public class TravelApp {
         ItineraryController itineraryController = new ItineraryController();
         TripController tripController = new TripController();
         ConsoleView consoleView = new ConsoleView();
+        //MainView mainView = new MainView(); 값을 전달 한다면
 
         while (true){
             Scanner sc = new Scanner(System.in);
             int num = sc.nextInt();
-
+            //mainView.sendView(num);
             switch (num){
                 case 1: //여행 기록
                     Trip newTrip = consoleView.getTripInfo();

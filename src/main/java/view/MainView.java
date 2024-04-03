@@ -22,15 +22,22 @@ public class MainView {
         public void sendView(int num){
             messages.startApp();
         switch (num){
-                case 1:
+            case 1:
                        addTripView.getTripInfo();
                        break;
-                case 2:
+            case 2:
                        addItineraryView.getItineraryInfo();
                        break;
-                case 3:
+            case 3:
                         getTravelView.printTravelInfo();
-                        break;;
+                        break;
+            case 4:
+                System.out.println("프로그램을 종료합니다");
+                return;
+            default:
+                System.out.println("잘못된 입력입니다. ");
+                break;
+
                 }
         }
 }
