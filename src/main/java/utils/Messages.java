@@ -11,6 +11,10 @@ public class Messages {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
     private static final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHH:mm");
 
+    private static final SimpleDateFormat printDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+    private static final SimpleDateFormat printDateTimeFormat = new SimpleDateFormat("yyyy년 MM월dd일 HH시 mm분");
+
+
     static {
         dateFormat.setLenient(false);
         dateTimeFormat.setLenient(false);
@@ -76,6 +80,14 @@ public class Messages {
                 System.out.println("잘못된 형식입니다. 다시 입력해주세요.");
             }
         }
+    }
+
+    public static String printFormatDate(Date date) {
+        return printDateFormat.format(date);
+    }
+
+    public static String printFormatDateTime(Date date) {
+        return printDateTimeFormat.format(date);
     }
 
     public static void sleep() {

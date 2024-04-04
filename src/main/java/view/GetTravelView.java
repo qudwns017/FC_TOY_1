@@ -13,14 +13,14 @@ public class GetTravelView {
         sc = new Scanner(System.in);
         Messages.equal();
         for (Trip trip : trips) {
-            System.out.println("여행 id : " + trip.getTripId() + "\t여행 이름 : " + trip.getTripName());
+            System.out.println("여행 ID : " + trip.getTripId() + "\t여행 이름 : " + trip.getTripName());
         }
         Messages.equal();
         while (true) {
             System.out.print("조회할 여행 번호를 입력해주세요 : ");
             int trip_id = sc.nextInt();
             if (trip_id > trips.size() || trip_id <= 0) {
-                System.out.println("입력하신 여행 id는 없는 아이디입니다. 다시 입력해주세요.");
+                System.out.println("입력하신 여행 ID는 존재하지 않습니다. 다시 입력해주세요.");
             } else {
                 return trip_id;
             }
@@ -34,18 +34,18 @@ public class GetTravelView {
             for (Itinerary itinerary : itineraries) {
                 Messages.equal();
                 System.out.println("출발지 : " + itinerary.getDeparturePlace());
-                System.out.println("출발 시간 :" + itinerary.getDepartureTime());
+                System.out.println("출발 시간 : " + Messages.printFormatDate(itinerary.getDepartureTime()));
                 System.out.println("도착지 : " + itinerary.getDestination());
-                System.out.println("도착 시간 :" + itinerary.getArrivalTime());
+                System.out.println("도착 시간 : " + Messages.printFormatDate(itinerary.getArrivalTime()));
 
                 if (itinerary.getCheckIn() != null) {
-                    System.out.println("체크인 시간 :" + itinerary.getCheckIn());
+                    System.out.println("체크인 시간 : " + Messages.printFormatDateTime(itinerary.getCheckIn()));
                 } else {
                     System.out.println("체크인 시간 : 체크인 없음");
                 }
 
                 if (itinerary.getCheckOut() != null) {
-                    System.out.println("체크아웃 시간 :" + itinerary.getCheckOut());
+                    System.out.println("체크아웃 시간 : " + Messages.printFormatDateTime(itinerary.getCheckOut()));
                 } else {
                     System.out.println("체크아웃 시간 : 체크아웃 없음");
                 }
@@ -66,8 +66,8 @@ public class GetTravelView {
         System.out.println(trip.getTripName() + "에 대한 여행 정보입니다");
         Messages.equal();
         System.out.println("여행 이름 : " + trip.getTripName());
-        System.out.println("시작 날짜 : " + trip.getStartDate());
-        System.out.println("종료 날짜 : " + trip.getEndDate());
+        System.out.println("시작 날짜 : " + Messages.printFormatDate(trip.getStartDate()));
+        System.out.println("종료 날짜 : " + Messages.printFormatDate(trip.getEndDate()));
         System.out.print("해당 여행에 대한 여정 정보를 확인하시겠습니까? (Y/N) : ");
         String answer = sc.nextLine();
         if (answer.equals("Y")) { //여정정보 확인
