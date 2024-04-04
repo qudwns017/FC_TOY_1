@@ -34,6 +34,8 @@ public class MainView {
         Messages.sleep();
 
         resentItineraries(newTrip);
+        Messages.sleep();
+        Messages.clear();
     }
     public void addItineraries(){
         List<Trip> trips = tripController.loadAllTrip();
@@ -44,17 +46,23 @@ public class MainView {
         Messages.sleep();
 
         resentItineraries(trip);
+        Messages.sleep();
+        Messages.clear();
     }
     public void addItineraries(Trip newTrip){
         Itinerary itinerary = addItineraryView.getItineraryInfo(newTrip);
         itineraryController.addItinerary(newTrip.getTripId(), itinerary);
         resentItineraries(newTrip);
+        Messages.sleep();
+        Messages.clear();
     }
 
     public void resentItineraries(Trip trip){
         if(Messages.getYesNoAnswer("여정을 추가하시겠습니까?")){
             addItineraries(trip);
         }
+        Messages.sleep();
+        Messages.clear();
     }
 
     public void  showItineraries(){
@@ -64,6 +72,7 @@ public class MainView {
         List<Itinerary> itineraries = itineraryController.getItinerary(selectedTripId);
         getTravelView.printItineraryInfo(selectedTrip, itineraries);
         Messages.sleep();
+        Messages.clear();
     }
 
 }
