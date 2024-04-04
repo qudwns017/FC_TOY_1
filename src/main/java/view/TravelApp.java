@@ -35,10 +35,3 @@ public class TravelApp {
         }
     }
 }
-
-/*
-public int sendCase()
-public void addTrips()
-public void addItineraries()
-public void  showItineraries()
- */
