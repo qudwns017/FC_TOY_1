@@ -10,4 +10,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TravelApp {
+    public static void main(String[] args) {
+        while (true){
+            int num = mainView.sendCase();
+
+            switch (num){
+                case 1:
+                    mainView.addTrips();
+                    break;
+            }
+        }
+    }
 }
