@@ -1,5 +1,6 @@
 package src.main.java.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import src.main.java.model.Itinerary;
 import src.main.java.utils.JsonConverter;
@@ -8,12 +9,20 @@ public class ItineraryController {
     JsonConverter jsonConverter = new JsonConverter();
 
     public void addItinerary(int tripId, Itinerary itinerary) {
-        List<Itinerary> itineraryList = getItinerary(tripId);
-        int itineraryId = itineraryList.size() + 1;
-        itinerary.setItineraryId(itineraryId);
+        int itineraryId;
+        List<Itinerary> itineraryList;
+        if (getItinerary(tripId) != null) {
+            itineraryList = getItinerary(tripId);
+            itineraryId = itineraryList.get(itineraryList.size() - 1).getItineraryId() + 1;
+            itinerary.setItineraryId(itineraryId);
+        } else {
+            itineraryList = new ArrayList<>();
+            itinerary.setItineraryId(1);
+        }
         itineraryList.add(itinerary);
         jsonConverter.saveItineraries(tripId, itineraryList);
     }
+
 
     public List<Itinerary> getItinerary(int tripId) {
         return jsonConverter.loadItineraries(tripId);
