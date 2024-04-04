@@ -21,6 +21,10 @@ public class TravelApp {
                 case 2:
                     mainView.addItineraries();
                     break;
+                case 3:
+                    mainView.showItineraries();
+                    break;
+
 
             }
         }
