@@ -32,7 +32,7 @@ public class MainView {
 
                 case 2: //2.여정기록
                     //2-3.여정기록받기
-                    Itinerary itinerary = addItineraryView.getItineraryInfo();
+                    // Itinerary itinerary = addItineraryView.getItineraryInfo();
                    /*2-1.여행 아이디, 여행 이름이 첫화면으로 뜨게
                     =====================================================
                     여행 아이디 / 여행 이름
