@@ -28,3 +28,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### 테스트 케이스 ###
+src/main/resources/*
