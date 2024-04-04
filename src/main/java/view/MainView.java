@@ -25,6 +25,19 @@ public class MainView {
         Trip newTrip = addTripView.getTripInfo();
         tripController.addTrip(newTrip);
     }
+    public void addItineraries(){
+        List<Trip> trips = tripController.loadAllTrip();
+        int selectedTripId = getTravelView.getTrip(trips);
+        Itinerary itinerary = addItineraryView.getItineraryInfo();
+        itineraryController.addItinerary(selectedTripId ,itinerary);
+    }
+    public void  showItineraries(){
+        List<Trip> trips = tripController.loadAllTrip();
+        int selectedTripId = getTravelView.getTrip(trips);
+        Trip selectedTrip = tripController.getTrip(selectedTripId);
+        List<Itinerary> itineraries = itineraryController.getItinerary(selectedTripId);
+        getTravelView.printItineraryInfo(selectedTrip, itineraries);
+    }
 
 }
 
