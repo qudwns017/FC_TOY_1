@@ -25,6 +25,8 @@ public class MainView {
         Trip newTrip = addTripView.getTripInfo();
         tripController.addTrip(newTrip);
         Messages.sleep();
+
+        resentItineraries(newTrip);
     }
     public void addItineraries(){
         List<Trip> trips = tripController.loadAllTrip();
@@ -33,7 +35,21 @@ public class MainView {
         Itinerary itinerary = addItineraryView.getItineraryInfo(trip);
         itineraryController.addItinerary(selectedTripId ,itinerary);
         Messages.sleep();
+
+        resentItineraries(trip);
     }
+    public void addItineraries(Trip newTrip){
+        Itinerary itinerary = addItineraryView.getItineraryInfo(newTrip);
+        itineraryController.addItinerary(newTrip.getTripId(), itinerary);
+        resentItineraries(newTrip);
+    }
+
+    public void resentItineraries(Trip trip){
+        if(Messages.getYesNoAnswer("여정을 추가하시겠습니까?")){
+            addItineraries(trip);
+        }
+    }
+
     public void  showItineraries(){
         List<Trip> trips = tripController.loadAllTrip();
         int selectedTripId = getTravelView.getTrip(trips);
