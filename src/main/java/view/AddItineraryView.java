@@ -58,10 +58,11 @@ public class AddItineraryView {
                 if (checkOutDay.after(checkInDay)) break;
                 else System.out.println("* 체크아웃은 체크인 이전이여야 합니다.");
             }
-
+            System.out.println("여정 추가가 완료되었습니다.");
             return new Itinerary(departurePlace, destination, departureDay, arrivalDay,
                     checkInDay, checkOutDay);
         } else {
+            System.out.println("여정 추가가 완료되었습니다.");
             return new Itinerary(departurePlace, destination, departureDay, arrivalDay);
         }
     }
