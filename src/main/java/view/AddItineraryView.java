@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class AddItineraryView {
     private static final Scanner sc = new Scanner(System.in);
 
-    public static Itinerary getItineraryInfo(Trip trip) {
+    public Itinerary getItineraryInfo(Trip trip) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
         Messages.equal();

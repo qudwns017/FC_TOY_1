@@ -71,7 +71,7 @@ public class Messages {
 
                 if(dateStr.length() != 8) throw new ParseException("", 0);
 
-                return dateTimeFormat.parse(dateStr);
+                return dateFormat.parse(dateStr);
             } catch (ParseException e) {
                 System.out.println("잘못된 형식입니다. 다시 입력해주세요.");
             }

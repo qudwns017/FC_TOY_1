@@ -15,9 +15,9 @@ public class MainView {
     GetTravelView getTravelView = new GetTravelView(); // 여정/여행 조회 뷰
     TripController tripController = new TripController();
     ItineraryController itineraryController = new ItineraryController();
-    Messages messages = new Messages();
+
     public int sendCase(){
-        messages.startApp();
+        Messages.startApp();
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
@@ -28,7 +28,8 @@ public class MainView {
     public void addItineraries(){
         List<Trip> trips = tripController.loadAllTrip();
         int selectedTripId = getTravelView.getTrip(trips);
-        Itinerary itinerary = addItineraryView.getItineraryInfo();
+        Trip trip = tripController.getTrip(selectedTripId);
+        Itinerary itinerary = addItineraryView.getItineraryInfo(trip);
         itineraryController.addItinerary(selectedTripId ,itinerary);
     }
     public void  showItineraries(){
