@@ -31,6 +31,7 @@ public class MainView {
                     break;
 
                 case 2: //2.여정기록
+
                     //2-3.여정기록받기
                     Itinerary itinerary = addItineraryView.getItineraryInfo();
                    /*2-1.여행 아이디, 여행 이름이 첫화면으로 뜨게
@@ -72,6 +73,30 @@ public class MainView {
         }
     }
 }
+    public int sendCase(){
+        messages.startApp();
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
+    }
+
+    public void addTrips(){
+        Trip newTrip = addTripView.getTripInfo();
+        tripController.addTrip(newTrip);
+    }
+
+    public void addItineraries(){
+        List<Trip> trips = tripController.loadAllTrip();
+        int selectedTripId = getTravelView.getTrip(trips);
+        Itinerary itinerary = addItineraryView.getItineraryInfo();
+        itineraryController.addItinerary(selectedTripId ,itinerary);
+    }
+    public void  showItineraries(){
+        List<Trip> trips = tripController.loadAllTrip();
+        int selectedTripId = getTravelView.getTrip(trips);
+        Trip selectedTrip = tripController.getTrip(selectedTripId);
+        List<Itinerary> itineraries = itineraryController.getItinerary(selectedTripId);
+        getTravelView.printItineraryInfo(selectedTrip, itineraries);
+    }
 
 /*
         //TravelApp에서 입력 받은 값을 전달 받아야

@@ -11,7 +11,14 @@ import java.util.Scanner;
 
 public class TravelApp {
     public static void main(String[] args) {
+
         while (true){
+            int num = mainView.sendCase();
+
+
+        MainView mainView = MainView();
+
+        while(true){
             int num = mainView.sendCase();
 
             switch (num){
