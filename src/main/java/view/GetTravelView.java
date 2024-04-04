@@ -17,12 +17,15 @@ public class GetTravelView {
             System.out.println("여행 id : " + trip.getTripId() + "\t여행 이름 : " + trip.getTripName());
         }
         messages.equal();
-        System.out.print("조회할 여행 번호를 입력해주세요 : ");
-        int trip_id = sc.nextInt();
-        if (trip_id > trips.size() || trip_id <= 0) {
-            trip_id = -1;
+        while (true) {
+            System.out.print("조회할 여행 번호를 입력해주세요 : ");
+            int trip_id = sc.nextInt();
+            if (trip_id > trips.size() || trip_id <= 0) {
+                System.out.println("입력하신 여행 id는 없는 아이디입니다. 다시 입력해주세요.");
+            } else {
+                return trip_id;
+            }
         }
-        return trip_id;
     }
 
     private void printNextInfoItineraryInfo(List<Itinerary> itineraries) {
