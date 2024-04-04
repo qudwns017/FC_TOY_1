@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class Messages {
     private static final Scanner sc = new Scanner(System.in);
 
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");;
-    private static final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHH:mm");;
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+    private static final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMddHH:mm");
 
     static {
         dateFormat.setLenient(false);
