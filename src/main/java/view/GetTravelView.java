@@ -7,16 +7,15 @@ import src.main.java.model.Trip;
 import src.main.java.utils.Messages;
 
 public class GetTravelView {
-    Messages messages = new Messages();
     Scanner sc;
 
     public int getTrip(List<Trip> trips) {
         sc = new Scanner(System.in);
-        messages.equal();
+        Messages.equal();
         for (Trip trip : trips) {
             System.out.println("여행 id : " + trip.getTripId() + "\t여행 이름 : " + trip.getTripName());
         }
-        messages.equal();
+        Messages.equal();
         while (true) {
             System.out.print("조회할 여행 번호를 입력해주세요 : ");
             int trip_id = sc.nextInt();
@@ -33,7 +32,7 @@ public class GetTravelView {
         String answer = "Y";
         while (answer.equals("Y")) {
             for (Itinerary itinerary : itineraries) {
-                messages.equal();
+                Messages.equal();
                 System.out.println("출발지 : " + itinerary.getDeparturePlace());
                 System.out.println("출발 시간 :" + itinerary.getDepartureTime());
                 System.out.println("도착지 : " + itinerary.getDestination());
@@ -50,7 +49,7 @@ public class GetTravelView {
                 } else {
                     System.out.println("체크아웃 시간 : 체크아웃 없음");
                 }
-                messages.equal();
+                Messages.equal();
 
                 System.out.print("\n다음 여정을 확인하시려면 엔터키를 누르세요.\n");
                 sc.nextLine();
@@ -65,7 +64,7 @@ public class GetTravelView {
         sc = new Scanner(System.in);
         List<Itinerary> allItinerary = itineraries;
         System.out.println(trip.getTripName() + "에 대한 여행 정보입니다");
-        messages.equal();
+        Messages.equal();
         System.out.println("여행 이름 : " + trip.getTripName());
         System.out.println("시작 날짜 : " + trip.getStartDate());
         System.out.println("종료 날짜 : " + trip.getEndDate());
