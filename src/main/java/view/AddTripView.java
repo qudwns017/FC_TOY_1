@@ -9,24 +9,53 @@ import java.util.Scanner;
 
 public class AddTripView {
 
-    private static final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMdd");
-    private static final Scanner sc = new Scanner(System.in);
-    private static final Messages messages = new Messages();
+    Messages messages = new Messages();
+    Scanner sc = new Scanner(System.in);
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+    SimpleDateFormat TimeFormat = new SimpleDateFormat("yyyyMMddhh:mm");
 
     public Trip getTripInfo() { //1.여행 기록
         messages.equal();
         System.out.print("- 여행 이름을 입력해주세요. :");
         String tripName = sc.nextLine();
 
-        Date startDate = messages.parseDate("- 여행 시작");
+        String startDateFormat;
+        String endDateFormat;
 
         while (true) {
-            Date endDate = messages.parseDate("- 여행 종료");
-            if (endDate.after(startDate)) {
-                return new Trip(tripName, startDate, endDate);
+            System.out.print("- 시작 날짜를 입력해주세요. ex) 20240401 :");
+            String startDate = sc.nextLine();
+            if (startDate.length() == 8) {
+                startDateFormat = startDate;
+                break;
             } else {
-                System.out.println("여행 종료일이 시작일 이후여야 합니다.");
+                System.out.println("잘못된 형식입니다. yyyymmdd 형식으로 입력해주세요");
             }
         }
+
+        while (true) {
+            System.out.print("- 종료 날자를 입력해주세요. ex) 20240403 :");
+            String endDate = sc.nextLine();
+            if (endDate.length() == 8) {
+                endDateFormat = endDate;
+                break;
+            } else {
+                System.out.println("잘못된 형식입니다. yyyymmdd 형식으로 입력해주세요");
+            }
+        }
+
+        System.out.println();
+
+        Date startDate;
+        Date endDate;
+
+        try { //문자열을 데이트 포맷으로 변경
+            startDate = dateFormat.parse(startDateFormat);
+            endDate = dateFormat.parse(endDateFormat);
+        } catch (Exception e) {
+            System.out.println("잘못된 형식입니다. yyyymmdd 형식으로 입력해주세요");
+            return null;
+        }
+        return new Trip(tripName, startDate, endDate);
     }
 }
