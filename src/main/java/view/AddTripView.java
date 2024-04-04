@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class AddTripView {
 
-    private static final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyyMMdd");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
     private static final Scanner sc = new Scanner(System.in);
     private static final Messages messages = new Messages();
 
@@ -22,7 +22,7 @@ public class AddTripView {
 
         while (true) {
             Date endDate = messages.parseDate("- 여행 종료");
-            if (endDate.after(startDate)) {
+            if (dateFormat.format(endDate).compareTo(dateFormat.format(startDate)) >= 0) {
                 return new Trip(tripName, startDate, endDate);
             } else {
                 System.out.println("여행 종료일이 시작일 이후여야 합니다.");
