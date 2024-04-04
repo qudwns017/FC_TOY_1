@@ -26,8 +26,12 @@ public class AddItineraryView {
 
         while (true) {
             departureDay = Messages.parseDateTime("여정 출발");
-            if (dateFormat.format(departureDay).compareTo(dateFormat.format(trip.getStartDate())) >= 0) break;
-            else System.out.println("* 여정 출발일은 여행 시작일 이후여야 합니다. (여행 시작일 : " + dateFormat.format(trip.getStartDate()) + ")");
+            if (!(dateFormat.format(departureDay).compareTo(dateFormat.format(trip.getStartDate())) >= 0)) {
+                System.out.println("* 여정 출발일은 여행 시작일 이후여야 합니다. (여행 시작일 : " + dateFormat.format(trip.getStartDate()) + ")");
+                continue;
+            }
+            if(dateFormat.format(departureDay).compareTo(dateFormat.format(trip.getEndDate())) <= 0) break;
+            else System.out.println("* 여정 출발일은 여행 종료일 이전이여야 합니다. (여행 시작일 : " + dateFormat.format(trip.getEndDate()) + ")");
         }
 
         while (true) {
