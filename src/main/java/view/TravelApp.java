@@ -19,6 +19,9 @@ public class TravelApp {
                 case 1:
                     mainView.addTrips();
                     break;
+                case 2:
+                    mainView.addItineraries();
+                    break;
 
             }
         }
