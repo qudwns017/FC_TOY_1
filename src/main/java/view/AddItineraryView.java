@@ -1,6 +1,7 @@
 package src.main.java.view;
 
 import src.main.java.model.Itinerary;
+import src.main.java.model.Trip;
 import src.main.java.utils.Messages;
 
 import java.text.ParseException;
@@ -11,7 +12,9 @@ import java.util.Scanner;
 public class AddItineraryView {
     private static final Scanner sc = new Scanner(System.in);
 
-    public static Itinerary getItineraryInfo() {
+    public static Itinerary getItineraryInfo(Trip trip) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+
         Messages.equal();
         System.out.println("여정 정보를 추가합니다.");
 
@@ -22,12 +25,21 @@ public class AddItineraryView {
 
         Date departureDay, arrivalDay;
 
-        // TODO : 여행 날짜도 비교 필요
-        departureDay = Messages.parseDateTime("여정 출발");
+        while (true) {
+            departureDay = Messages.parseDateTime("여정 출발");
+            if (dateFormat.format(departureDay).compareTo(dateFormat.format(trip.getStartDate())) >= 0) break;
+            else System.out.println("* 여정 출발일은 여행 시작일 이후여야 합니다. (여행 시작일 : " + dateFormat.format(trip.getStartDate()) + ")");
+        }
+
         while (true) {
             arrivalDay = Messages.parseDateTime("여정 도착");
+            if(dateFormat.format(arrivalDay).compareTo(dateFormat.format(trip.getEndDate())) > 0) {
+                System.out.println("* 여정 도착일은 여행 종료일 이전이여야 합니다. (여행 종료일 : " + dateFormat.format(trip.getEndDate()) + ")" );
+                continue;
+            }
+
             if (arrivalDay.after(departureDay)) break;
-            else System.out.println("여정 도착일이 출발일 이후여야 합니다.");
+            else System.out.println("* 여정 도착일은 여정 출발일 이후여야 합니다.");
         }
 
         System.out.println();
@@ -38,13 +50,13 @@ public class AddItineraryView {
             while (true) {
                 checkInDay = Messages.parseDateTime("체크인");
                 if (checkInDay.after(arrivalDay)) break;
-                else System.out.println("체크인은 여정 도착 이후여야 합니다.");
+                else System.out.println("* 체크인은 여정 도착 이후여야 합니다.");
             }
 
             while (true) {
                 checkOutDay = Messages.parseDateTime("체크아웃");
                 if (checkOutDay.after(checkInDay)) break;
-                else System.out.println("체크아웃은 체크인 이전이여야 합니다.");
+                else System.out.println("* 체크아웃은 체크인 이전이여야 합니다.");
             }
 
             return new Itinerary(departurePlace, destination, departureDay, arrivalDay,
