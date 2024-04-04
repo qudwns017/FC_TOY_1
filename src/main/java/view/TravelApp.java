@@ -11,7 +11,12 @@ import java.util.Scanner;
 
 public class TravelApp {
     public static void main(String[] args) {
+        MainView mainView = new MainView();
+        mainView.sendView();;
 
+    }
+}
+/*
         ItineraryController itineraryController = new ItineraryController();
         TripController tripController = new TripController();
         ConsoleView consoleView = new ConsoleView();
@@ -78,6 +83,4 @@ public class TravelApp {
                     break;
             }
         }
-
-    }
-}
+*/

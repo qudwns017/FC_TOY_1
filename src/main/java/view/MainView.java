@@ -1,6 +1,8 @@
 package src.main.java.view;
 
+import src.main.java.controller.ItineraryController;
 import src.main.java.controller.TripController;
+import src.main.java.model.Itinerary;
 import src.main.java.model.Trip;
 import src.main.java.utils.Messages;
 
@@ -8,6 +10,31 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MainView {
+    AddTripView addTripView = new AddTripView(); //여행추가
+    AddItineraryView addItineraryView = new AddItineraryView(); //여정기록
+    GetTravelView getTravelView = new GetTravelView(); // 여정/여행 조회 뷰
+    TripController tripController = new TripController();
+    ItineraryController itineraryController = new ItineraryController();
+    Messages messages = new Messages();
+
+    public void sendView(){
+
+        while(true){
+            messages.startApp();
+            Scanner sc = new Scanner(System.in);
+            int num =sc.nextInt();
+            switch (num){
+                case 1: //여행 추가
+                    Trip newTrip = addTripView.getTripInfo();
+                    tripController.addTrip(newTrip);
+                    //Y시 여정 기록으로 넘어가야함 addItineraryView.getItineraryInfo();
+                    break;
+
+
+    }
+}
+
+/*
         //TravelApp에서 입력 받은 값을 전달 받아야
         //MainView mainView = new MainView();
         //mainView.sendView
@@ -38,4 +65,5 @@ public class MainView {
                }
 
      }
-}
+
+     */
