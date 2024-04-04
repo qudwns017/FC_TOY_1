@@ -81,7 +81,6 @@ public class GetTravelView {
 
     }
     public void printTripNameDate(Trip trip){
-        System.out.println(trip.getTripName() + "에 대한 여행 정보입니다");
         Messages.equal();
         System.out.println("여행 이름 : " + trip.getTripName());
         System.out.println("시작 날짜 : " + Messages.printFormatDate(trip.getStartDate()));
