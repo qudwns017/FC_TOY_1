@@ -41,10 +41,10 @@ public class MainView {
         List<Trip> trips = tripController.loadAllTrip();
         int selectedTripId = getTravelView.getTrip(trips);
         Trip trip = tripController.getTrip(selectedTripId);
+        getTravelView.printTripNameDate(trip);
         Itinerary itinerary = addItineraryView.getItineraryInfo(trip);
         itineraryController.addItinerary(selectedTripId ,itinerary);
         Messages.sleep();
-
         resentItineraries(trip);
         Messages.sleep();
         Messages.clear();
