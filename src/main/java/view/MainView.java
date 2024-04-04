@@ -6,6 +6,7 @@ import src.main.java.model.Itinerary;
 import src.main.java.model.Trip;
 import src.main.java.utils.Messages;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,8 +19,14 @@ public class MainView {
 
     public int sendCase(){
         Messages.startApp();
-        Scanner sc = new Scanner(System.in);
-        return sc.nextInt();
+        try {
+            Scanner sc = new Scanner(System.in);
+            return sc.nextInt();
+        }
+        catch(InputMismatchException e){
+            return -1;
+        }
+
     }
     public void addTrips(){
         Trip newTrip = addTripView.getTripInfo();
