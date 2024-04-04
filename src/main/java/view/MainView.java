@@ -53,6 +53,13 @@ public class MainView {
 
                     break;
 
+                case 3://여정조회
+                    List<Trip> trips = tripController.loadAllTrip();
+                    int selectedTripId = getTravelView.getTrip(trips);
+                    Trip selectedTrip = tripController.getTrip(selectedTripId);
+                    List<Itinerary> itineraries = itineraryController.getItinerary(selectedTripId);
+                    getTravelView.printItineraryInfo(selectedTrip, itineraries);
+                    break;
 
             }
 
