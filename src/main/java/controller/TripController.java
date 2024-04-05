@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
-import src.main.java.utils.JsonConverter;
+import src.main.java.service.JsonConverter;
 
 public class TripController {
 
