@@ -2,7 +2,6 @@ package src.main.java.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import src.main.java.model.Itinerary;
@@ -59,24 +58,6 @@ public class ItineraryController {
             itinerariesData.put(obj.getItineraryId(), itineraryData);
         }
         
-        return itineraries;
-    }
-
-    public HashMap<String, String> getItinerary(int tripId, int itinerary_id) {
-        List<Itinerary> itineraryList = jsonConverter.loadItineraries(tripId);
-        HashMap<String, String> itineraryData = new HashMap<>();
-        for (Itinerary obj : itineraryList) {
-            if (itinerary_id == obj.getItineraryId()) {
-                itineraryData.put("itinerary_id", String.valueOf(obj.getItineraryId()));
-                itineraryData.put("departure_place", obj.getDeparturePlace());
-                itineraryData.put("destination", obj.getDestination());
-                itineraryData.put("departure_time", dateTimeFormat.format(obj.getDepartureTime()));
-                itineraryData.put("arrival_time", dateTimeFormat.format(obj.getArrivalTime()));
-                itineraryData.put("check_in", dateTimeFormat.format(obj.getCheckIn()));
-                itineraryData.put("check_out", dateTimeFormat.format(obj.getCheckOut()));
-                break;
-            }
-        }
-        return itineraryData;
+        return itinerariesData;
     }
 }
