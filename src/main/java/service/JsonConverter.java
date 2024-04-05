@@ -1,4 +1,4 @@
-package src.main.java.utils;
+package src.main.java.service;
 
 import java.io.*;
 import java.util.*;
@@ -20,7 +20,6 @@ public class JsonConverter {
 
         try (FileReader fr = new FileReader(TRIP_PATH + fileName)) {
             Gson gson = new GsonBuilder()
-                    // .setDateFormat("yyyy-MM-dd")
                     .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                     .create();
             return gson.fromJson(fr, Trip.class);
@@ -75,20 +74,21 @@ public class JsonConverter {
 
     public List<Itinerary> loadItineraries(int tripId) {
         String fileName = "itineraries_" + tripId + ".json";
+        ItinerariesJsonDTO dto;
 
         try (FileReader fr = new FileReader(ITINERARIES_PATH + fileName)) {
             Gson gson = new GsonBuilder()
                     .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                     .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                     .create();
-            ItinerariesJsonDTO dto = gson.fromJson(fr, ItinerariesJsonDTO.class);
+            dto = gson.fromJson(fr, ItinerariesJsonDTO.class);
             return dto.getItineraries();
         } catch (FileNotFoundException e) {
-            return null;
+            return new ArrayList<>();
         } catch (IOException e) {
             System.err.println(e);
         }
-        return null;
+        return new ArrayList<>();
     }
 
     public void saveItineraries(int tripId, List<Itinerary> itineraries) {
