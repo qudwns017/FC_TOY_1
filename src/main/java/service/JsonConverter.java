@@ -30,7 +30,6 @@ public class JsonConverter {
     }
 
     public List<Trip> loadAllTrip() {
-        // 존재하는 Trip 파일 ID 검색
         List<Integer> existTripFileId = new ArrayList<>();
 
         File directory = new File(TRIP_PATH);

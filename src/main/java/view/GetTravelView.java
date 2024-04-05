@@ -87,7 +87,7 @@ public class GetTravelView {
             System.out.println("종료 날짜 : " + Messages.printFormatDate(endDate));
             System.out.print("해당 여행에 대한 여정 정보를 확인하시겠습니까? (Y/N) : ");
             String answer = sc.nextLine();
-            if (answer.equals("Y")) { //여정정보 확인
+            if (answer.equals("Y")) {
                 printNextInfoItineraryInfo(itineraries);
             } else {
                 System.out.println("처음 화면으로 돌아갑니다.");
