@@ -80,4 +80,10 @@ public class GetTravelView {
         System.out.println("처음 화면으로 돌아갑니다.");
 
     }
+    public void printTripNameDate(Trip trip){
+        Messages.equal();
+        System.out.println("여행 이름 : " + trip.getTripName());
+        System.out.println("시작 날짜 : " + Messages.printFormatDate(trip.getStartDate()));
+        System.out.println("종료 날짜 : " + Messages.printFormatDate(trip.getEndDate()));
+    }
 }
