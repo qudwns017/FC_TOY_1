@@ -1,85 +1,61 @@
 package src.main.java.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import src.main.java.dto.TripSub;
-import src.main.java.model.Itinerary;
 import src.main.java.model.Trip;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import src.main.java.service.JsonConverter;
 
 public class TripController {
 
-    public TripController() {
-    }
+    JsonConverter jsonConverter = new JsonConverter();
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
-    // 여행 추가하는 함수
-    public void addTrip(Trip trip) {
-        // trip_(num).json 저장 위치
-        String JSON_DIRECTORY = "src/main/resources/trip/";
-        File dir = new File(JSON_DIRECTORY);
-
-        // json 파일 개수 세기 > trip_id
-        String[] jsons = dir.list();
-        trip.setTripId(jsons.length + 1);
-
-        // trip_(num).json 추가하기
-        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-        String newTrip = JSON_DIRECTORY + "trip_" + trip.getTripId() + ".json";
-
+    public void addTrip(HashMap<String, String> tripHash){
+        List<Trip> list = jsonConverter.loadAllTrip();
+        Trip trip = null;
         try {
-            FileWriter fw = new FileWriter(newTrip);
-            gson.toJson(trip, fw);
-            fw.flush();
-            fw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            trip = new Trip(tripHash.get("trip_name"),
+                    dateFormat.parse(tripHash.get("start_date")) ,
+                    dateFormat.parse(tripHash.get("end_date")));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
-
+        trip.setTripId(list.size() + 1);
+        jsonConverter.saveTrip(trip);
     }
 
-    public static Trip getTrip(int tripId) {
-        String fileDirectory = "src/main/resources/trip/";
-        String fileName = "trip_" + tripId + ".json";
-        Trip trip;
+    public HashMap<String, String> getTrip(int tripId) {
+        Trip trip = jsonConverter.loadTrip(tripId);
+        HashMap<String, String> tripHash = new HashMap<>();
+        tripHash.put("trip_id", trip.getTripId() +"");
+        tripHash.put("trip_name", trip.getTripName());
+        tripHash.put("start_date", dateFormat.format(trip.getStartDate()));
+        tripHash.put("end_date",dateFormat.format(trip.getEndDate()));
 
-        Reader reader = null;
-        try {
-            reader = new FileReader(fileDirectory+fileName);
-            Gson gson = new Gson();
-            trip = gson.fromJson(reader, Trip.class);
-        } catch (FileNotFoundException ex) {
-            return null;
-        }
-
-        return trip;
+        return tripHash;
     }
 
-    public static ArrayList<TripSub> getAllTrip(){
-        String fileDirectory = "src/main/resources/trip/";
-        File dir = new File(fileDirectory);
-        ArrayList<TripSub> tripList = new ArrayList<>();
-        Reader reader;
+    public HashMap<Integer, HashMap<String, String>> loadAllTrip() {
+        // 여행이 최소 1개 있는지 확인
+        List<Trip> tripList = jsonConverter.loadAllTrip();
+        HashMap<Integer, HashMap<String, String>> trips = new HashMap<>();
 
-        String[] fileList = dir.list();
-        if(fileList.length == 0){
-            return null;
+        for(Trip trip : tripList){
+            HashMap<String, String> subTripHash = new HashMap<>();
+            subTripHash.put("trip_name", trip.getTripName());
+            subTripHash.put("start_date", dateFormat.format(trip.getStartDate()));
+            subTripHash.put("end_date",dateFormat.format(trip.getEndDate()));
+
+            trips.put(trip.getTripId(), subTripHash);
         }
-        for (String fileName : fileList) {
-            Gson gson = new Gson();
-            try {
-                reader = new FileReader(fileDirectory + fileName);
-            }
-            catch(FileNotFoundException e){
-                return null;
-            }
-            JsonObject json = gson.fromJson(reader, JsonObject.class);
-            tripList.add(new TripSub(json.get("trip_id").getAsInt(), json.get("trip_name").getAsString()));
-        }
-        return tripList;
+
+        return trips;
     }
 
+//    public void removeTrip(int tripId) {
+//
+//    }
 }
