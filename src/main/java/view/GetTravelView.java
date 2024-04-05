@@ -37,7 +37,7 @@ public class GetTravelView {
             for (Entry<Integer, HashMap<String, String>> itinerary : itineraries.entrySet()) {
                 Messages.equal();
                 try {
-                    Date departureTime = dateFormat.parse(itinerary.getValue().get("departude_time"));
+                    Date departureTime = dateFormat.parse(itinerary.getValue().get("departure_time"));
                     Date arrivalTime = dateFormat.parse(itinerary.getValue().get("arrival_time"));
                     Date checkIn = dateFormat.parse(itinerary.getValue().get("check_out"));
                     Date checkOut = dateFormat.parse(itinerary.getValue().get("check_in"));
