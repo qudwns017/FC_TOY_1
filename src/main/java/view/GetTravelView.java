@@ -1,19 +1,21 @@
 package src.main.java.view;
 
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Scanner;
-import src.main.java.model.Itinerary;
-import src.main.java.model.Trip;
 import src.main.java.utils.Messages;
 
 public class GetTravelView {
     Scanner sc;
 
-    public int getTrip(List<Trip> trips) {
+    public int getTrip(HashMap<Integer, HashMap<String, String>> trips) {
         sc = new Scanner(System.in);
         Messages.equal();
-        for (Trip trip : trips) {
-            System.out.println("여행 ID : " + trip.getTripId() + "\t여행 이름 : " + trip.getTripName());
+        for (Entry<Integer, HashMap<String, String>> trip : trips.entrySet()) {
+            System.out.println("여행 ID : " + trip.getKey() + "\t여행 이름 : " + trip.getValue().get("trip_name"));
         }
         Messages.equal();
         while (true) {
@@ -27,29 +29,38 @@ public class GetTravelView {
         }
     }
 
-    private void printNextInfoItineraryInfo(List<Itinerary> itineraries) {
+    private void printNextInfoItineraryInfo(HashMap<Integer, HashMap<String, String>> itineraries) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         sc = new Scanner(System.in);
         String answer = "Y";
         while (answer.equals("Y")) {
-            for (Itinerary itinerary : itineraries) {
+            for (Entry<Integer, HashMap<String, String>> itinerary : itineraries.entrySet()) {
                 Messages.equal();
-                System.out.println("출발지 : " + itinerary.getDeparturePlace());
-                System.out.println("출발 시간 : " + Messages.printFormatDate(itinerary.getDepartureTime()));
-                System.out.println("도착지 : " + itinerary.getDestination());
-                System.out.println("도착 시간 : " + Messages.printFormatDate(itinerary.getArrivalTime()));
+                try {
+                    Date departureTime = dateFormat.parse(itinerary.getValue().get("departude_time"));
+                    Date arrivalTime = dateFormat.parse(itinerary.getValue().get("arrival_time"));
+                    Date checkIn = dateFormat.parse(itinerary.getValue().get("check_out"));
+                    Date checkOut = dateFormat.parse(itinerary.getValue().get("check_in"));
+                    System.out.println("출발지 : " + itinerary.getValue().get("departure_place"));
+                    System.out.println("출발 시간 : " + Messages.printFormatDate(departureTime));
+                    System.out.println("도착지 : " + itinerary.getValue().get("destination"));
+                    System.out.println("도착 시간 : " + Messages.printFormatDate(arrivalTime));
 
-                if (itinerary.getCheckIn() != null) {
-                    System.out.println("체크인 시간 : " + Messages.printFormatDateTime(itinerary.getCheckIn()));
-                } else {
-                    System.out.println("체크인 시간 : 체크인 없음");
-                }
+                    if (checkIn != null) {
+                        System.out.println("체크인 시간 : " + Messages.printFormatDateTime(checkIn));
+                    } else {
+                        System.out.println("체크인 시간 : 체크인 없음");
+                    }
 
-                if (itinerary.getCheckOut() != null) {
-                    System.out.println("체크아웃 시간 : " + Messages.printFormatDateTime(itinerary.getCheckOut()));
-                } else {
-                    System.out.println("체크아웃 시간 : 체크아웃 없음");
+                    if (checkOut != null) {
+                        System.out.println("체크아웃 시간 : " + Messages.printFormatDateTime(checkOut));
+                    } else {
+                        System.out.println("체크아웃 시간 : 체크아웃 없음");
+                    }
+                    Messages.equal();
+                } catch (ParseException e) {
+                    System.out.println(e.getMessage());
                 }
-                Messages.equal();
 
                 System.out.print("\n다음 여정을 확인하시려면 엔터키를 누르세요.\n");
                 sc.nextLine();
@@ -60,30 +71,40 @@ public class GetTravelView {
         }
     }
 
-    public void printItineraryInfo(Trip trip, List<Itinerary> itineraries) { // 3
+    public void printItineraryInfo(HashMap<String, String> trip,
+                                   HashMap<Integer, HashMap<String, String>> itineraries) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+
         sc = new Scanner(System.in);
-        List<Itinerary> allItinerary = itineraries;
-        System.out.println(trip.getTripName() + "에 대한 여행 정보입니다");
+        System.out.println(trip.get("trip_name") + "에 대한 여행 정보입니다");
         Messages.equal();
-        System.out.println("여행 이름 : " + trip.getTripName());
-        System.out.println("시작 날짜 : " + Messages.printFormatDate(trip.getStartDate()));
-        System.out.println("종료 날짜 : " + Messages.printFormatDate(trip.getEndDate()));
-        System.out.print("해당 여행에 대한 여정 정보를 확인하시겠습니까? (Y/N) : ");
-        String answer = sc.nextLine();
-        if (answer.equals("Y")) { //여정정보 확인
-            printNextInfoItineraryInfo(allItinerary);
-        } else {
+        System.out.println("여행 이름 : " + trip.get("trip_name"));
+        try {
+            Date startDate = dateFormat.parse(trip.get("start_date"));
+            Date endDate = dateFormat.parse(trip.get("end_date"));
+
+            System.out.println("시작 날짜 : " + Messages.printFormatDate(startDate));
+            System.out.println("종료 날짜 : " + Messages.printFormatDate(endDate));
+            System.out.print("해당 여행에 대한 여정 정보를 확인하시겠습니까? (Y/N) : ");
+            String answer = sc.nextLine();
+            if (answer.equals("Y")) { //여정정보 확인
+                printNextInfoItineraryInfo(itineraries);
+            } else {
+                System.out.println("처음 화면으로 돌아갑니다.");
+                return;
+            }
+
             System.out.println("처음 화면으로 돌아갑니다.");
-            return;
+
+        } catch (ParseException e) {
+            System.out.println(e.getMessage());
         }
-
-        System.out.println("처음 화면으로 돌아갑니다.");
-
     }
-    public void printTripNameDate(Trip trip){
+
+    public void printTripNameDate(HashMap<String, String> trip) {
         Messages.equal();
-        System.out.println("여행 이름 : " + trip.getTripName());
-        System.out.println("시작 날짜 : " + Messages.printFormatDate(trip.getStartDate()));
-        System.out.println("종료 날짜 : " + Messages.printFormatDate(trip.getEndDate()));
+        System.out.println("여행 이름 : " + trip.get("trip_name"));
+        System.out.println("시작 날짜 : " + trip.get("start_date"));
+        System.out.println("종료 날짜 : " + trip.get("end_date"));
     }
 }
