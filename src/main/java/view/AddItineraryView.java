@@ -40,7 +40,7 @@ public class AddItineraryView {
                     continue;
                 }
                 if (dateFormat.format(departureDay).compareTo(dateFormat.format(endDate)) <= 0) {
-                    itinerary.put("departure_day", dateTimeFormat.format(departureDay));
+                    itinerary.put("departure_time", dateTimeFormat.format(departureDay));
                     break;
                 } else {
                     System.out.println(
@@ -59,7 +59,7 @@ public class AddItineraryView {
                 }
 
                 if (arrivalDay.after(departureDay)) {
-                    itinerary.put("arrival_day", dateTimeFormat.format(arrivalDay));
+                    itinerary.put("arrival_time", dateTimeFormat.format(arrivalDay));
                     break;
                 } else {
                     System.out.println("* 여정 도착일은 여정 출발일 이후여야 합니다.");
@@ -74,7 +74,7 @@ public class AddItineraryView {
                 while (true) {
                     checkInDay = Messages.parseDateTime("체크인");
                     if (checkInDay.after(arrivalDay)) {
-                        itinerary.put("check_in_day", dateTimeFormat.format(checkInDay));
+                        itinerary.put("check_in", dateTimeFormat.format(checkInDay));
                         break;
                     } else {
                         System.out.println("* 체크인은 여정 도착 이후여야 합니다.");
@@ -84,7 +84,7 @@ public class AddItineraryView {
                 while (true) {
                     checkOutDay = Messages.parseDateTime("체크아웃");
                     if (checkOutDay.after(checkInDay)) {
-                        itinerary.put("check_out_day", dateTimeFormat.format(checkOutDay));
+                        itinerary.put("check_out", dateTimeFormat.format(checkOutDay));
                         break;
                     } else {
                         System.out.println("* 체크아웃은 체크인 이전이여야 합니다.");

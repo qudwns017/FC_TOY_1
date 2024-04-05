@@ -25,7 +25,7 @@ public class AddTripView {
         while (true) {
             Date endDate = Messages.parseDate("- 여행 종료");
             if (dateFormat.format(endDate).compareTo(dateFormat.format(startDate)) >= 0) {
-                trip.put("end_date", dateFormat.format(startDate));
+                trip.put("end_date", dateFormat.format(endDate));
                 System.out.println("여행 추가가 완료되었습니다.");
                 return trip;
             } else {
