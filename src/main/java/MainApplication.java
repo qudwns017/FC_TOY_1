@@ -1,6 +1,8 @@
-package src.main.java.view;
+package src.main.java;
 
-public class TravelApp {
+import src.main.java.view.MainView;
+
+public class MainApplication {
     public static void main(String[] args) {
         MainView mainView = new MainView();
 
