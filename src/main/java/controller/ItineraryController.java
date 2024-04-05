@@ -53,11 +53,13 @@ public class ItineraryController {
             itineraryData.put("destination", obj.getDestination());
             itineraryData.put("departure_time", dateTimeFormat.format(obj.getDepartureTime()));
             itineraryData.put("arrival_time", dateTimeFormat.format(obj.getArrivalTime()));
-            itineraryData.put("check_in", dateTimeFormat.format(obj.getCheckIn()));
-            itineraryData.put("check_out", dateTimeFormat.format(obj.getCheckOut()));
+            if (obj.getCheckIn() != null) {
+                itineraryData.put("check_in", dateTimeFormat.format(obj.getCheckIn()));
+                itineraryData.put("check_out", dateTimeFormat.format(obj.getCheckOut()));
+            }
             itinerariesData.put(obj.getItineraryId(), itineraryData);
         }
-        
+
         return itinerariesData;
     }
 }

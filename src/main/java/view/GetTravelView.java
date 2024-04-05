@@ -30,7 +30,7 @@ public class GetTravelView {
     }
 
     private void printNextInfoItineraryInfo(HashMap<Integer, HashMap<String, String>> itineraries) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHH:mm");
         sc = new Scanner(System.in);
         String answer = "Y";
         while (answer.equals("Y")) {
@@ -39,12 +39,16 @@ public class GetTravelView {
                 try {
                     Date departureTime = dateFormat.parse(itinerary.getValue().get("departure_time"));
                     Date arrivalTime = dateFormat.parse(itinerary.getValue().get("arrival_time"));
-                    Date checkIn = dateFormat.parse(itinerary.getValue().get("check_out"));
-                    Date checkOut = dateFormat.parse(itinerary.getValue().get("check_in"));
+                    Date checkIn = null;
+                    Date checkOut = null;
+                    if (itinerary.getValue().get("check_out") != null) {
+                        checkIn = dateFormat.parse(itinerary.getValue().get("check_in"));
+                        checkOut = dateFormat.parse(itinerary.getValue().get("check_out"));
+                    }
                     System.out.println("출발지 : " + itinerary.getValue().get("departure_place"));
-                    System.out.println("출발 시간 : " + Messages.printFormatDate(departureTime));
+                    System.out.println("출발 시간 : " + Messages.printFormatDateTime(departureTime));
                     System.out.println("도착지 : " + itinerary.getValue().get("destination"));
-                    System.out.println("도착 시간 : " + Messages.printFormatDate(arrivalTime));
+                    System.out.println("도착 시간 : " + Messages.printFormatDateTime(arrivalTime));
 
                     if (checkIn != null) {
                         System.out.println("체크인 시간 : " + Messages.printFormatDateTime(checkIn));
@@ -87,7 +91,7 @@ public class GetTravelView {
             System.out.println("종료 날짜 : " + Messages.printFormatDate(endDate));
             System.out.print("해당 여행에 대한 여정 정보를 확인하시겠습니까? (Y/N) : ");
             String answer = sc.nextLine();
-            if (answer.equals("Y")) { //여정정보 확인
+            if (answer.equals("Y")) {
                 printNextInfoItineraryInfo(itineraries);
             } else {
                 System.out.println("처음 화면으로 돌아갑니다.");
